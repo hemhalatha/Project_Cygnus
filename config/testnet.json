@@ -1,0 +1,58 @@
+{
+  "environment": "testnet",
+  "stellar": {
+    "networkPassphrase": "Test SDF Network ; September 2015",
+    "horizonUrl": "https://horizon-testnet.stellar.org",
+    "sorobanRpcUrl": "https://soroban-testnet.stellar.org",
+    "friendbotUrl": "https://friendbot.stellar.org"
+  },
+  "agent": {
+    "maxConcurrentOperations": 10,
+    "opportunityCheckInterval": 30000,
+    "loanMonitoringInterval": 60000,
+    "escrowMonitoringInterval": 60000,
+    "defaultRiskTolerance": 0.5
+  },
+  "payment": {
+    "x402": {
+      "serverPort": 3402,
+      "timeout": 30000,
+      "maxPaymentAge": 86400000
+    },
+    "channels": {
+      "defaultTimeout": 3600,
+      "minDeposit": 1000000,
+      "maxChannels": 100
+    }
+  },
+  "security": {
+    "rateLimiting": {
+      "enabled": true,
+      "maxRequests": 100,
+      "windowMs": 60000
+    },
+    "circuitBreaker": {
+      "enabled": true,
+      "failureThreshold": 5,
+      "timeout": 60000
+    },
+    "encryption": {
+      "algorithm": "aes-256-gcm",
+      "keyLength": 32
+    }
+  },
+  "monitoring": {
+    "metricsEnabled": true,
+    "metricsInterval": 60000,
+    "alerting": {
+      "enabled": false,
+      "criticalThreshold": 0.9
+    },
+    "logging": {
+      "level": "debug",
+      "directory": "./logs",
+      "maxFileSize": 10485760,
+      "maxFiles": 10
+    }
+  }
+}

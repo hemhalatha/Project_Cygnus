@@ -7,8 +7,13 @@
 // Export XDR utilities
 export * from './stellar/xdr/index.js';
 
+// Export utilities (Phase 7)
+export * from './utils';
+export * from './config';
+export * from './monitoring';
+
 // Version info
-export const VERSION = '0.1.0';
+export const VERSION = '0.7.0';
 export const NAME = 'Project Cygnus';
 
 /**
@@ -25,11 +30,24 @@ export async function initialize(config?: {
   console.log(`Network: ${network}`);
   console.log(`Log Level: ${logLevel}`);
 
-  // TODO: Initialize components as they are implemented
-  // - Agent Runtime
-  // - Protocol Handlers
-  // - Smart Contract Clients
-  // - Identity Management
+  // Initialize configuration
+  const { ConfigManager } = await import('./config');
+  const configManager = new ConfigManager(network);
+  await configManager.load();
+
+  // Initialize error logging
+  const { ErrorLogger } = await import('./utils');
+  const errorLogger = new ErrorLogger({
+    logDirectory: './logs',
+    enableConsole: true,
+    enableFile: true,
+  });
+
+  // Initialize metrics collection
+  const { MetricsCollector } = await import('./monitoring');
+  const metrics = new MetricsCollector();
+
+  console.log(`${NAME} initialized successfully`);
 }
 
 /**
@@ -45,12 +63,15 @@ export function getStatus(): {
     name: NAME,
     components: {
       xdr: true,
-      agentRuntime: false,
-      x402Protocol: false,
-      x402Flash: false,
-      masumiIdentity: false,
-      sokosumiCoordination: false,
-      smartContracts: false,
+      agentRuntime: true,
+      x402Protocol: true,
+      x402Flash: true,
+      masumiIdentity: true,
+      sokosumiCoordination: true,
+      smartContracts: true,
+      errorHandling: true,
+      configuration: true,
+      monitoring: true,
     },
   };
 }

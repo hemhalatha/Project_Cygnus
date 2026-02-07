@@ -1,0 +1,57 @@
+{
+  "environment": "mainnet",
+  "stellar": {
+    "networkPassphrase": "Public Global Stellar Network ; September 2015",
+    "horizonUrl": "https://horizon.stellar.org",
+    "sorobanRpcUrl": "https://soroban-rpc.stellar.org"
+  },
+  "agent": {
+    "maxConcurrentOperations": 20,
+    "opportunityCheckInterval": 15000,
+    "loanMonitoringInterval": 30000,
+    "escrowMonitoringInterval": 30000,
+    "defaultRiskTolerance": 0.3
+  },
+  "payment": {
+    "x402": {
+      "serverPort": 3402,
+      "timeout": 30000,
+      "maxPaymentAge": 86400000
+    },
+    "channels": {
+      "defaultTimeout": 7200,
+      "minDeposit": 10000000,
+      "maxChannels": 500
+    }
+  },
+  "security": {
+    "rateLimiting": {
+      "enabled": true,
+      "maxRequests": 1000,
+      "windowMs": 60000
+    },
+    "circuitBreaker": {
+      "enabled": true,
+      "failureThreshold": 3,
+      "timeout": 120000
+    },
+    "encryption": {
+      "algorithm": "aes-256-gcm",
+      "keyLength": 32
+    }
+  },
+  "monitoring": {
+    "metricsEnabled": true,
+    "metricsInterval": 30000,
+    "alerting": {
+      "enabled": true,
+      "criticalThreshold": 0.95
+    },
+    "logging": {
+      "level": "info",
+      "directory": "./logs",
+      "maxFileSize": 52428800,
+      "maxFiles": 30
+    }
+  }
+}
