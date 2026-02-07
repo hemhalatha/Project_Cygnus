@@ -19,52 +19,6 @@ import {
 /**
  * Encodes a transaction envelope to XDR format
  */
-export function encodeTransactionEnvelope(envelope: TransactionEnvelope): string {
-  try {
-    // Build transaction using Stellar SDK
-    const account = new StellarSdk.Account(envelope.tx.sourceAccount, envelope.tx.seqNum);
-
-    const txBuilder = new StellarSdk.TransactionBuilder(account, {
-      fee: envelope.tx.fee.toString(),
-      networkPassphrase: StellarSdk.Networks.TESTNET,
-    });
-
-    // Add time bounds if present
-    if (envelope.tx.timeBounds) {
-      txBuilder.setTimeout(
-        parseInt(envelope.tx.timeBounds.maxTime) - parseInt(envelope.tx.timeBounds.minTime)
-      );
-    }
-
-    // Add memo
-    const memo = encodeMemo(envelope.tx.memo);
-    if (memo) {
-      txBuilder.addMemo(memo);
-    }
-
-    // Add operations
-    for (const op of envelope.tx.operations) {
-      const stellarOp = encodeOperation(op);
-      txBuilder.addOperation(stellarOp);
-    }
-
-    const tx = txBuilder.build();
-
-    // Add signatures
-    for (const sig of envelope.signatures) {
-      tx.addSignature(sig.hint.toString('hex'), sig.signature.toString('base64'));
-    }
-
-    // Return XDR string
-    return tx.toEnvelope().toXDR('base64');
-  } catch (error) {
-    throw new Error(`Failed to encode transaction envelope: ${error}`);
-  }
-}
-
-/**
- * Encodes a transaction to XDR format (without signatures)
- */
 export function encodeTransaction(tx: Transaction): string {
   try {
     const account = new StellarSdk.Account(tx.sourceAccount, tx.seqNum);
@@ -74,8 +28,13 @@ export function encodeTransaction(tx: Transaction): string {
       networkPassphrase: StellarSdk.Networks.TESTNET,
     });
 
+    // Set timeout - either from timeBounds or use a default
     if (tx.timeBounds) {
-      txBuilder.setTimeout(parseInt(tx.timeBounds.maxTime) - parseInt(tx.timeBounds.minTime));
+      const timeout = parseInt(tx.timeBounds.maxTime) - parseInt(tx.timeBounds.minTime);
+      txBuilder.setTimeout(timeout);
+    } else {
+      // Default timeout of 30 seconds if not specified
+      txBuilder.setTimeout(30);
     }
 
     const memo = encodeMemo(tx.memo);

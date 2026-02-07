@@ -106,7 +106,7 @@ describe('XDR Serialization', () => {
     it('should decode an encoded transaction', () => {
       // Create a transaction using Stellar SDK
       const sourceKeypair = StellarSdk.Keypair.fromSecret(
-        'SBFZHU5GLE2IYXYMLQW2TQJXO5XMQUXG2VDURJRJXLR5XWJHKXPXPXPX'
+        'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4'
       );
       
       const account = new StellarSdk.Account(sourceKeypair.publicKey(), '1');
@@ -136,7 +136,7 @@ describe('XDR Serialization', () => {
 
     it('should decode transaction with memo', () => {
       const sourceKeypair = StellarSdk.Keypair.fromSecret(
-        'SBFZHU5GLE2IYXYMLQW2TQJXO5XMQUXG2VDURJRJXLR5XWJHKXPXPXPX'
+        'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4'
       );
       
       const account = new StellarSdk.Account(sourceKeypair.publicKey(), '1');
@@ -167,7 +167,7 @@ describe('XDR Serialization', () => {
   describe('XDR Validation', () => {
     it('should validate correct XDR', () => {
       const sourceKeypair = StellarSdk.Keypair.fromSecret(
-        'SBFZHU5GLE2IYXYMLQW2TQJXO5XMQUXG2VDURJRJXLR5XWJHKXPXPXPX'
+        'SCZANGBA5YHTNYVVV4C3U252E2B6P6F5T3U6MM63WBSBZATAQI3EBTQ4'
       );
       
       const account = new StellarSdk.Account(sourceKeypair.publicKey(), '1');

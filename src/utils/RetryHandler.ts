@@ -157,27 +157,31 @@ export class RetryHandler {
    * Check if error is retryable
    */
   private isRetryable(error: Error): boolean {
-    const config = this.config as RetryConfig;
+      const config = this.config as RetryConfig;
 
-    // Check error code
-    if ('code' in error && config.retryableErrors) {
-      return config.retryableErrors.includes((error as any).code);
+      // Check error code
+      if ('code' in error && config.retryableErrors) {
+        return config.retryableErrors.includes((error as any).code);
+      }
+
+      // Check error message for common retryable patterns (case-insensitive)
+      const message = error.message.toUpperCase();
+      const retryablePatterns = [
+        'TIMEOUT',
+        'ETIMEDOUT',
+        'ECONNREFUSED',
+        'ENOTFOUND',
+        'ENETUNREACH',
+        'EAI_AGAIN',
+        'NETWORK',
+        'TEMPORARY',
+        'UNAVAILABLE',
+        'RATE LIMIT',
+        'TOO MANY REQUESTS',
+      ];
+
+      return retryablePatterns.some(pattern => message.includes(pattern));
     }
-
-    // Check error message for common retryable patterns
-    const message = error.message.toLowerCase();
-    const retryablePatterns = [
-      'timeout',
-      'econnrefused',
-      'network',
-      'temporary',
-      'unavailable',
-      'rate limit',
-      'too many requests',
-    ];
-
-    return retryablePatterns.some(pattern => message.includes(pattern));
-  }
 
   /**
    * Sleep utility

@@ -5,7 +5,7 @@
 //! Manages peer-to-peer loans between autonomous agents with collateral,
 //! automatic repayment, and liquidation mechanisms.
 
-use soroban_sdk::{contract, contractimpl, contracttype, token, Address, Env, String, Vec};
+use soroban_sdk::{contract, contractimpl, contracttype, token, Address, Env, Vec};
 
 /// Loan status
 #[contracttype]
@@ -154,9 +154,10 @@ impl LoanContract {
         for i in 0..loan.repayment_schedule.len() {
             let mut payment = loan.repayment_schedule.get(i).unwrap();
             if !payment.paid && amount >= payment.amount {
+                let payment_amount = payment.amount;
                 payment.paid = true;
                 loan.repayment_schedule.set(i, payment);
-                loan.total_repaid += payment.amount;
+                loan.total_repaid += payment_amount;
                 payment_made = true;
                 break;
             }
