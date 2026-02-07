@@ -1,0 +1,18 @@
+# Conda environment: Project_Cygnus
+# You created this env already. From project root:
+#   conda activate Project_Cygnus
+#   pip install -e .
+#   pip install -r requirements.txt
+#
+# To create from this file (optional):
+#   conda env create -f environment.yml
+#   conda activate Project_Cygnus
+#   pip install -e . && pip install -r requirements.txt
+
+name: Project_Cygnus
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.11
+  - pip

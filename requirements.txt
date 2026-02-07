@@ -1,0 +1,33 @@
+# Project Cygnus - Machine Economy on Stellar
+# Install in conda env: conda activate Project_Cygnus && pip install -e . && pip install -r requirements.txt
+# Or: pip install -e . && pip install -r requirements.txt (from project root)
+-e .
+
+# Stellar
+stellar-sdk>=11.0.0
+
+# API
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# Config & validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Database
+sqlalchemy>=2.0.0
+asyncpg>=0.29.0
+alembic>=1.13.0
+psycopg2-binary>=2.9.9
+
+# Scheduler
+apscheduler>=3.10.0
+
+# HTTP client
+httpx>=0.26.0
+
+# Env
+python-dotenv>=1.0.0
+
+# Dev / quality
+ruff>=0.1.0

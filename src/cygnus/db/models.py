@@ -1,0 +1,51 @@
+"""SQLAlchemy models: agents, payment definitions, audit logs (Phase 6)."""
+
+from datetime import datetime
+from typing import Any
+
+from sqlalchemy import DateTime, String, Text, JSON, Integer
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+
+
+class Base(DeclarativeBase):
+    """Base for all models."""
+
+    type_annotation_map = {
+        dict[str, Any]: JSON,
+    }
+
+
+class AgentModel(Base):
+    """Stored agent config (e.g. label, key reference). Secret never stored in DB."""
+
+    __tablename__ = "agents"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    label: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
+    public_key: Mapped[str] = mapped_column(String(56), nullable=False, unique=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+
+
+class PaymentDefinitionModel(Base):
+    """Programmable payment definition (e.g. recurring or one-off)."""
+
+    __tablename__ = "payment_definitions"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    kind: Mapped[str] = mapped_column(String(32), nullable=False)  # native, claimable, time_bound
+    destination: Mapped[str] = mapped_column(String(56), nullable=False)
+    amount: Mapped[str] = mapped_column(String(32), nullable=False)
+    extra: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # predicate, memo, etc.
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
+
+
+class AuditLogModel(Base):
+    """Audit log for agent actions and API requests."""
+
+    __tablename__ = "audit_logs"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    action: Mapped[str] = mapped_column(String(64), nullable=False)
+    payload: Mapped[dict | None] = mapped_column(JSON, nullable=True)
+    result: Mapped[str | None] = mapped_column(Text, nullable=True)  # success/error summary
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
