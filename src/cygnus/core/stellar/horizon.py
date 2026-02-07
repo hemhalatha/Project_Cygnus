@@ -1,7 +1,6 @@
 """Horizon client: fetch account, submit transactions (Phase 1.2)."""
 
 from stellar_sdk import Server
-from stellar_sdk.exceptions import BadRequestError
 
 from cygnus.config import get_settings
 

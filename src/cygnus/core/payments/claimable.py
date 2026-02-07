@@ -42,9 +42,7 @@ def create_claimable_balance(
 
     predicate = None
     if predicate_before_relative_seconds is not None:
-        predicate = ClaimPredicate.predicate_before_relative_time(
-            predicate_before_relative_seconds
-        )
+        predicate = ClaimPredicate.predicate_before_relative_time(predicate_before_relative_seconds)
     elif predicate_before_absolute_timestamp is not None:
         predicate = ClaimPredicate.predicate_before_absolute_time(
             predicate_before_absolute_timestamp

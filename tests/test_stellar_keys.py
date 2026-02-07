@@ -1,9 +1,8 @@
 """Tests for Stellar keypair handling (Phase 1)."""
 
-import pytest
+from stellar_sdk import Keypair
 
 from cygnus.core.stellar.keys import KeypairManager
-from stellar_sdk import Keypair
 
 
 def test_keypair_manager_generate() -> None:

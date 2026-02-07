@@ -33,6 +33,15 @@ class Settings(BaseSettings):
     api_secret_key: str = Field(default="change-me", alias="API_SECRET_KEY")
     redis_url: str | None = Field(default=None, alias="REDIS_URL")
 
+    # x402 (HTTP 402 Payment Required)
+    x402_enabled: bool = Field(default=True, alias="X402_ENABLED")
+    x402_amount_xlm: str = Field(default="0.1", alias="X402_AMOUNT_XLM")
+    x402_pay_to: str | None = Field(default=None, alias="X402_PAY_TO")
+
+    # Masumi Network (identity, agent registry)
+    masumi_node_url: str | None = Field(default=None, alias="MASUMI_NODE_URL")
+    masumi_registry_url: str | None = Field(default=None, alias="MASUMI_REGISTRY_URL")
+
 
 @lru_cache
 def get_settings() -> Settings:

@@ -1,7 +1,7 @@
 """APScheduler: trigger agent logic on a schedule (Phase 5)."""
 
 import logging
-from typing import Callable
+from collections.abc import Callable
 
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger

@@ -1,9 +1,9 @@
 """Agent service: key storage, build and submit transactions (Phase 4)."""
 
 from cygnus.config import get_settings
-from cygnus.core.stellar.payments import submit_native_payment
 from cygnus.core.payments.claimable import create_claimable_balance
 from cygnus.core.payments.time_bound import build_time_bound_payment
+from cygnus.core.stellar.payments import submit_native_payment
 
 
 def get_agent_secret() -> str | None:

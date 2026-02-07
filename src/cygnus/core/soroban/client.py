@@ -1,7 +1,6 @@
 """Soroban RPC client: network, ledger, simulate, prepare, send (Phase 3)."""
 
-from stellar_sdk import Network, SorobanServer
-from stellar_sdk.exceptions import SorobanRpcErrorResponse
+from stellar_sdk import SorobanServer
 
 from cygnus.config import get_settings
 

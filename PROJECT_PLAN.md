@@ -2,6 +2,18 @@
 
 **Goal:** Build a Machine Economy on Stellar with autonomous agents and programmable payments, following the architecture from *Architecting the Machine Economy: Engineering Autonomous Agents and Programmable Payments on the Stellar Blockchain*.
 
+**Target stack:** We use the five-layer architecture below. See **[docs/ARCHITECTURE_STACK.md](docs/ARCHITECTURE_STACK.md)** for roles and integration plan.
+
+### Target Technology Stack (Five Layers)
+
+| Layer | Technology | Role |
+|-------|------------|------|
+| **Settlement (L1)** | Stellar / Soroban | Distributed ledger for final payment settlement and escrow. |
+| **Agent Framework** | **ElizaOS** | TypeScript-based multi-agent operating system for logic and memory. |
+| **Payment Protocol** | **x402** | HTTP-native standard for "Payment Required" (402) response cycles. |
+| **Micropayment SDK** | **x402-Flash Stellar SDK** | Off-chain payment channels for <100ms latency on Stellar. |
+| **Identity & Trust** | **Masumi Network** | Registry for DIDs, decision logging, and agent marketplace. |
+
 ---
 
 ## 1. Architecture Overview
@@ -71,6 +83,13 @@
 - [ ] **7.1** Ruff (lint + format), fix all reported issues.
 - [ ] **7.2** Environment-based config (testnet/mainnet, Horizon URL, RPC URL).
 - [ ] **7.3** README with setup (conda env `Project_Cygnus`), env vars, and run instructions.
+
+### Phase 8 — Stack integration (target stack)
+
+- [ ] **8.1** **x402:** Add HTTP 402 support to Cygnus API (payment requirements, PAYMENT-SIGNATURE / PAYMENT-RESPONSE, Stellar settlement).
+- [ ] **8.2** **ElizaOS:** Run ElizaOS as agent runtime; wire agents to Cygnus API for Stellar actions; optionally build an ElizaOS plugin for Cygnus.
+- [ ] **8.3** **x402-Flash Stellar SDK:** Integrate off-chain payment channels for <100ms micropayments on Stellar.
+- [ ] **8.4** **Masumi Network:** Integrate DIDs, decision logging, and agent marketplace (e.g. Sokosumi) for identity and trust.
 
 ---
 

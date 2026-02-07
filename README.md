@@ -2,7 +2,17 @@
 
 **Machine Economy: Autonomous Agents and Programmable Payments on the Stellar Blockchain**
 
-This project implements the architecture described in *Architecting the Machine Economy: Engineering Autonomous Agents and Programmable Payments on the Stellar Blockchain* — Stellar basics, programmable payments (claimable balances, time-bound payments), Soroban smart contract integration, an agent service, a scheduler, and a FastAPI + optional PostgreSQL stack.
+This project implements the architecture from *Architecting the Machine Economy* using the **target five-layer stack**:
+
+| Layer | Technology | Role |
+|-------|------------|------|
+| **Settlement (L1)** | Stellar / Soroban | Distributed ledger for final payment settlement and escrow. |
+| **Agent Framework** | **ElizaOS** | TypeScript-based multi-agent OS for logic and memory. |
+| **Payment Protocol** | **x402** | HTTP-native "Payment Required" (402) response cycles. |
+| **Micropayment SDK** | **x402-Flash Stellar SDK** | Off-chain payment channels for <100ms latency on Stellar. |
+| **Identity & Trust** | **Masumi Network** | DIDs, decision logging, and agent marketplace. |
+
+All tech from the PDF are represented: **Stellar, Horizon, Soroban, stellar-sdk**, native/claimable/time-bound payments, **liquidity pools**, agent service, **APScheduler**, **FastAPI**, **PostgreSQL**, **Alembic**, **x402** (402 + verification), **Masumi** client + routes, optional **Celery**; **ElizaOS** and **x402-Flash** have scaffolds/placeholders (see [docs/TECHNOLOGY_INVENTORY.md](docs/TECHNOLOGY_INVENTORY.md)).
 
 ---
 
@@ -51,13 +61,36 @@ python scripts/run_api.py
 
 ---
 
+## Frontend (Freighter + Agent Rankings)
+
+A simple React frontend demonstrates the flow and lets you test with **Freighter wallet**:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open http://localhost:5173. Ensure the backend is running on port 8000 (API calls are proxied in dev).
+
+- **Home** — Connect Freighter, see your Stellar address, send a test payment (requires `AGENT_SECRET_KEY` on the backend).
+- **Agent Rankings** — Page ranking agents by highest trades and profits (data from `GET /api/v1/agents/rankings`).
+
+See [frontend/README.md](frontend/README.md) for details.
+
+---
+
 ## API overview
 
 | Area | Endpoints |
 |------|-----------|
 | Health | `GET /health`, `GET /health/version`, `GET /health/stellar` |
 | Payments | `POST /api/v1/payments/native`, `POST /api/v1/payments/claimable`, `POST /api/v1/payments/time-bound` |
+| Stellar (L1) | `GET /api/v1/stellar/liquidity-pools`, `GET /api/v1/stellar/liquidity-pools/{id}` |
 | Soroban | `GET /api/v1/soroban/health`, `POST /api/v1/soroban/invoke` |
+| x402 | `GET /api/v1/x402/requirements`, `GET /api/v1/x402/premium` (402 when unpaid) |
+| Masumi | `GET /api/v1/masumi/availability`, `POST /api/v1/masumi/register` |
+| Agents | `GET /api/v1/agents/rankings` (rank by trades & profit) |
 
 Payment endpoints use the **agent** (configured via `AGENT_SECRET_KEY` in `.env`). Set this to a funded testnet secret key for submissions to succeed.
 

@@ -5,15 +5,16 @@ Revises:
 Create Date: 2026-02-07
 
 """
-from typing import Sequence, Union
 
-from alembic import op
+from collections.abc import Sequence
+
 import sqlalchemy as sa
+from alembic import op
 
 revision: str = "001"
-down_revision: Union[str, None] = None
-branch_labels: Union[str, Sequence[str], None] = None
-depends_on: Union[str, Sequence[str], None] = None
+down_revision: str | None = None
+branch_labels: str | Sequence[str] | None = None
+depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
@@ -22,7 +23,9 @@ def upgrade() -> None:
         sa.Column("id", sa.Integer(), autoincrement=True, nullable=False),
         sa.Column("label", sa.String(255), nullable=False),
         sa.Column("public_key", sa.String(56), nullable=False),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index("ix_agents_label", "agents", ["label"], unique=False)
@@ -35,7 +38,9 @@ def upgrade() -> None:
         sa.Column("destination", sa.String(56), nullable=False),
         sa.Column("amount", sa.String(32), nullable=False),
         sa.Column("extra", sa.JSON(), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
 
@@ -45,7 +50,9 @@ def upgrade() -> None:
         sa.Column("action", sa.String(64), nullable=False),
         sa.Column("payload", sa.JSON(), nullable=True),
         sa.Column("result", sa.Text(), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.text("now()"), nullable=True
+        ),
         sa.PrimaryKeyConstraint("id"),
     )
 

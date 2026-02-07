@@ -1,11 +1,10 @@
 """Database engine and session factory (Phase 6)."""
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import Session, sessionmaker
 
 from cygnus.config import get_settings
 from cygnus.db.models import Base
-
 
 _engine = None
 _session_factory = None
