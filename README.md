@@ -87,6 +87,13 @@ pnpm install
 
 ## Quick Start
 
+**New to Project Cygnus?** Start here: [START_HERE.md](START_HERE.md)
+
+For detailed instructions, see:
+- [GETTING_STARTED.md](GETTING_STARTED.md) - Complete setup and testing guide
+- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Command reference
+- [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md) - Dashboard usage
+
 ### 1. Environment Setup
 
 ```bash
