@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FreighterAPI from "@stellar/freighter-api";
-import { getHealth, postNativePayment, postNativePaymentWithSteps, type PaymentStep } from "../api";
+import {
+  getAgentAddress,
+  getHealth,
+  postBuildFundAgent,
+  postNativePayment,
+  postNativePaymentWithSteps,
+  type PaymentStep,
+} from "../api";
 
 function getFreighter(): typeof FreighterAPI | undefined {
   if (typeof window === "undefined") return undefined;
@@ -20,6 +27,12 @@ export default function Home() {
   const [steps, setSteps] = useState<PaymentStep[]>([]);
   const [stepError, setStepError] = useState<string | null>(null);
   const [stepsRunning, setStepsRunning] = useState(false);
+  const [fundAmount, setFundAmount] = useState("100");
+  const [fundMemo, setFundMemo] = useState("");
+  const [fundSteps, setFundSteps] = useState<PaymentStep[]>([]);
+  const [fundError, setFundError] = useState<string | null>(null);
+  const [fundRunning, setFundRunning] = useState(false);
+  const [agentAddress, setAgentAddress] = useState<string | null>(null);
 
   const checkFreighter = useCallback(async () => {
     const api = getFreighter();
@@ -140,6 +153,107 @@ export default function Home() {
     }
   };
 
+  const addFundStep = (label: string, status: PaymentStep["status"], detail?: string) => {
+    setFundSteps((prev) => [...prev, { id: String(prev.length), label, status, detail }]);
+  };
+  const setFundStepDetail = (index: number, status: PaymentStep["status"], detail?: string) => {
+    setFundSteps((prev) => {
+      const next = [...prev];
+      if (next[index]) {
+        next[index] = { ...next[index], status, detail };
+      }
+      return next;
+    });
+  };
+
+  const handleFundAgent = async () => {
+    const api = getFreighter();
+    if (!api) {
+      setFundError("Freighter not detected.");
+      return;
+    }
+    if (!pubKey) {
+      setFundError("Connect Freighter first.");
+      return;
+    }
+    const amount = fundAmount.trim();
+    if (!amount) {
+      setFundError("Enter an amount (XLM).");
+      return;
+    }
+    setFundError(null);
+    setFundSteps([]);
+    setFundRunning(true);
+    try {
+      addFundStep("Fetching agent address", "running");
+      let agentPubKey = agentAddress;
+      if (!agentPubKey) {
+        const res = await getAgentAddress();
+        agentPubKey = res.public_key;
+        setAgentAddress(agentPubKey);
+      }
+      setFundStepDetail(0, "done", `Agent: ${agentPubKey.slice(0, 8)}...${agentPubKey.slice(-4)}`);
+
+      addFundStep("Building transaction", "running", `Send ${amount} XLM to agent`);
+      const buildRes = await postBuildFundAgent({
+        source_public_key: pubKey,
+        amount_xlm: amount,
+        memo: fundMemo.trim() || undefined,
+      });
+      if (!buildRes.success || !buildRes.transaction_xdr) {
+        throw new Error(buildRes.message ?? "Build failed");
+      }
+      setFundStepDetail(1, "done", "Unsigned transaction ready");
+
+      addFundStep("Requesting signature from Freighter", "running");
+      const signRes = await api.signTransaction(buildRes.transaction_xdr, {
+        networkPassphrase: buildRes.network_passphrase,
+      });
+      if (signRes?.error) {
+        throw new Error(signRes.error.message ?? "Signature declined");
+      }
+      const signedXdr = signRes?.signedTxXdr;
+      if (!signedXdr) {
+        throw new Error("No signed transaction returned");
+      }
+      setFundStepDetail(2, "done", "Signed with your wallet");
+
+      addFundStep("Submitting to network", "running");
+      const horizonUrl = buildRes.horizon_url ?? "https://horizon-testnet.stellar.org";
+      const submitRes = await fetch(`${horizonUrl}/transactions`, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `tx=${encodeURIComponent(signedXdr)}`,
+      });
+      const submitData = await submitRes.json().catch(() => ({}));
+      if (!submitRes.ok) {
+        const detail = submitData.detail ?? submitData.message ?? "Submit failed";
+        const codes = submitData.extras?.result_codes;
+        const codeStr =
+          codes && typeof codes === "object"
+            ? ` Result codes: ${JSON.stringify(codes)}`
+            : codes
+              ? ` Result codes: ${String(codes)}`
+              : "";
+        throw new Error(detail + codeStr);
+      }
+      const hash = submitData.hash ?? submitData.id ?? "—";
+      setFundStepDetail(3, "done", `Success. Hash: ${hash}`);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Failed";
+      setFundError(msg);
+      setFundSteps((prev) => {
+        const last = prev[prev.length - 1];
+        if (last && last.status === "running") {
+          return [...prev.slice(0, -1), { ...last, status: "error" as const, detail: msg }];
+        }
+        return [...prev, { id: "err", label: "Error", status: "error" as const, detail: msg }];
+      });
+    } finally {
+      setFundRunning(false);
+    }
+  };
+
   return (
     <div className="container">
       <h1 style={{ marginBottom: "1rem" }}>Cygnus — Machine Economy</h1>
@@ -176,6 +290,109 @@ export default function Home() {
           </div>
         )}
         {!checking && error && <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{error}</p>}
+      </div>
+
+      <div className="card" style={{ marginBottom: "1.5rem" }}>
+        <h2 style={{ marginBottom: "0.75rem" }}>Fund the agent</h2>
+        <p style={{ color: "#94a3b8", marginBottom: "1rem" }}>
+          Send XLM from your connected wallet to the agent so it can make payments. Steps appear in the log below.
+        </p>
+        <p style={{ color: "#94a3b8", fontSize: "0.875rem", marginBottom: "1rem" }}>
+          If you see <strong>op_no_destination</strong>, the agent account does not exist on testnet yet. Create it once with{" "}
+          <a
+            href="https://laboratory.stellar.org/#explorer?resource=accounts&endpoint=create"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#38bdf8" }}
+          >
+            Friendbot
+          </a>
+          {" "}(paste the agent address from the log, then click Create account), then try again.
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1rem" }}>
+          <label style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <span style={{ color: "#94a3b8", fontSize: "0.875rem" }}>Amount (XLM)</span>
+            <input
+              type="text"
+              placeholder="100"
+              value={fundAmount}
+              onChange={(e) => setFundAmount(e.target.value)}
+              disabled={fundRunning}
+              style={{
+                padding: "0.5rem 0.75rem",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "6px",
+                color: "#f1f5f9",
+                width: "6rem",
+              }}
+            />
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <span style={{ color: "#94a3b8", fontSize: "0.875rem" }}>Memo (optional)</span>
+            <input
+              type="text"
+              placeholder="Funding agent"
+              value={fundMemo}
+              onChange={(e) => setFundMemo(e.target.value)}
+              disabled={fundRunning}
+              style={{
+                padding: "0.5rem 0.75rem",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "6px",
+                color: "#f1f5f9",
+              }}
+            />
+          </label>
+        </div>
+        <button
+          onClick={handleFundAgent}
+          disabled={!apiOk || !pubKey || fundRunning}
+          style={{ marginBottom: fundSteps.length > 0 ? "1rem" : 0 }}
+        >
+          {fundRunning ? "Running…" : "Send XLM to agent"}
+        </button>
+        {fundError && (
+          <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{fundError}</p>
+        )}
+        {fundSteps.length > 0 && (
+          <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #334155" }}>
+            <h3 style={{ marginBottom: "0.75rem", fontSize: "1rem" }}>Log</h3>
+            <ol style={{ listStyle: "none", paddingLeft: 0, margin: 0 }}>
+              {fundSteps.map((s, i) => (
+                <li
+                  key={s.id + i}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "0.5rem",
+                    marginBottom: "0.5rem",
+                    padding: "0.5rem 0.75rem",
+                    background: s.status === "error" ? "rgba(248,113,113,0.1)" : s.status === "done" ? "rgba(34,197,94,0.08)" : "rgba(148,163,184,0.06)",
+                    borderRadius: "6px",
+                    borderLeft: `3px solid ${
+                      s.status === "error" ? "#f87171" : s.status === "done" ? "#22c55e" : "#64748b"
+                    }`,
+                  }}
+                >
+                  <span style={{ color: "#64748b", minWidth: "1.5rem" }}>{i + 1}.</span>
+                  <div>
+                    <strong>{s.label}</strong>
+                    {s.status === "running" && " …"}
+                    {s.status === "done" && " ✓"}
+                    {s.status === "error" && " ✗"}
+                    {s.detail && (
+                      <p style={{ margin: "0.25rem 0 0", color: "#94a3b8", fontSize: "0.875rem" }}>
+                        {s.detail}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
 
       <div className="card" style={{ marginBottom: "1.5rem" }}>

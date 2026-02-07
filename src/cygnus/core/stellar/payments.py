@@ -99,6 +99,45 @@ def submit_native_payment_with_steps(
         return steps, None
 
 
+def build_unsigned_payment_xdr(
+    source_public_key: str,
+    destination_public_key: str,
+    amount_xlm: str,
+    memo: str | None = None,
+    horizon_url: str | None = None,
+) -> str:
+    """
+    Build an unsigned native XLM payment transaction (source -> destination).
+    Returns the transaction XDR (base64) for the client to sign (e.g. with Freighter).
+    """
+    settings = get_settings()
+    network_passphrase = (
+        Network.TESTNET_NETWORK_PASSPHRASE
+        if settings.stellar_network == "testnet"
+        else Network.PUBLIC_NETWORK_PASSPHRASE
+    )
+    client = HorizonClient(horizon_url)
+    server = client.server
+    source_account = server.load_account(source_public_key)
+    base_fee = server.fetch_base_fee()
+    builder = (
+        TransactionBuilder(
+            source_account=source_account,
+            network_passphrase=network_passphrase,
+            base_fee=base_fee,
+        )
+        .append_payment_op(
+            destination=destination_public_key,
+            asset=Asset.native(),
+            amount=amount_xlm,
+        )
+    )
+    if memo:
+        builder.add_text_memo(memo)
+    transaction = builder.build()
+    return transaction.to_xdr()
+
+
 def submit_native_payment(
     source_secret: str,
     destination_public: str,

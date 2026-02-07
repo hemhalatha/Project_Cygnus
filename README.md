@@ -227,7 +227,7 @@ For agent payments (e.g. test payment from the UI), set `AGENT_SECRET_KEY` befor
 | Area | Endpoints |
 |------|-----------|
 | Health | `GET /health`, `GET /health/stellar` |
-| Payments | `POST /api/v1/payments/native`, `/claimable`, `/time-bound` |
+| Payments | `POST /api/v1/payments/native`, `/claimable`, `/time-bound`, `GET /transactions` |
 | Stellar | `GET /api/v1/stellar/liquidity-pools`, `.../liquidity-pools/{id}` |
 | Soroban | `GET /api/v1/soroban/health`, `POST /api/v1/soroban/invoke` |
 | x402 | `GET /api/v1/x402/requirements`, `GET /api/v1/x402/premium` |
@@ -244,6 +244,8 @@ Payments require `AGENT_SECRET_KEY` in `.env` (funded testnet key).
 # Set DATABASE_URL in .env, then:
 alembic upgrade head
 ```
+
+With `DATABASE_URL` set, every agent payment (native, claimable, time-bound) is stored in the `agent_transactions` table. List them with `GET /api/v1/payments/transactions?limit=50&offset=0`.
 
 ---
 

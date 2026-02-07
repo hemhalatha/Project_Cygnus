@@ -1,14 +1,18 @@
-"""Payment and agent endpoints: native, claimable, time-bound (Phase 6)."""
+"""Payment and agent endpoints: native, claimable, time-bound, transactions list (Phase 6)."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 
+from cygnus.config import get_settings
 from cygnus.core.agent import (
     agent_create_claimable_balance,
     agent_native_payment,
     agent_native_payment_with_steps,
     agent_time_bound_payment,
+    build_fund_agent_request,
+    get_agent_public_key,
 )
+from cygnus.db.agent_transactions import list_agent_transactions
 
 router = APIRouter()
 
@@ -35,6 +39,54 @@ class TimeBoundPaymentRequest(BaseModel):
     destination_public: str = Field(..., min_length=56, max_length=56)
     amount_xlm: str = Field(..., pattern=r"^\d+(\.\d+)?$")
     valid_for_seconds: int = Field(default=300, ge=1, le=86400)
+
+
+class BuildFundAgentRequest(BaseModel):
+    """Request body for building a fund-agent transaction (user -> agent)."""
+
+    source_public_key: str = Field(..., min_length=56, max_length=56)
+    amount_xlm: str = Field(..., pattern=r"^\d+(\.\d+)?$")
+    memo: str | None = None
+
+
+@router.get("/transactions")
+async def get_transactions(
+    limit: int = Query(default=50, ge=1, le=200),
+    offset: int = Query(default=0, ge=0),
+) -> dict:
+    """List agent transactions (newest first). Requires DATABASE_URL."""
+    if not get_settings().database_url:
+        raise HTTPException(
+            status_code=503,
+            detail="Database not configured (DATABASE_URL not set). Agent transactions are not persisted.",
+        )
+    try:
+        items = list_agent_transactions(limit=limit, offset=offset)
+        return {"transactions": items}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/agent-address")
+async def get_agent_address() -> dict:
+    """Return the agent's public key (G...) for funding. 404 if AGENT_SECRET_KEY not set."""
+    public_key = get_agent_public_key()
+    if not public_key:
+        raise HTTPException(status_code=404, detail="Agent not configured (AGENT_SECRET_KEY not set)")
+    return {"public_key": public_key}
+
+
+@router.post("/build-fund-agent")
+async def post_build_fund_agent(body: BuildFundAgentRequest) -> dict:
+    """Build an unsigned transaction for the user to send XLM to the agent. Client signs with Freighter and submits to Horizon."""
+    result = build_fund_agent_request(
+        source_public_key=body.source_public_key,
+        amount_xlm=body.amount_xlm,
+        memo=body.memo,
+    )
+    if not result.get("success"):
+        raise HTTPException(status_code=400, detail=result)
+    return result
 
 
 @router.post("/native")

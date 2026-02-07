@@ -70,3 +70,41 @@ export async function postNativePaymentWithSteps(
   }
   return raw as NativePaymentWithStepsResponse;
 }
+
+export async function getAgentAddress(): Promise<{ public_key: string }> {
+  const r = await fetch(`${API_BASE}/api/v1/payments/agent-address`);
+  if (!r.ok) {
+    const data = await r.json().catch(() => ({}));
+    throw new Error((data as { detail?: string }).detail ?? "Agent not configured");
+  }
+  return r.json();
+}
+
+export interface BuildFundAgentRequest {
+  source_public_key: string;
+  amount_xlm: string;
+  memo?: string;
+}
+
+export interface BuildFundAgentResponse {
+  success: boolean;
+  transaction_xdr?: string;
+  network_passphrase?: string;
+  horizon_url?: string;
+  agent_public_key?: string;
+  error?: string;
+  message?: string;
+}
+
+export async function postBuildFundAgent(
+  body: BuildFundAgentRequest
+): Promise<BuildFundAgentResponse> {
+  const r = await fetch(`${API_BASE}/api/v1/payments/build-fund-agent`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((data as { detail?: { message?: string } }).detail?.message ?? "Build failed");
+  return data as BuildFundAgentResponse;
+}
