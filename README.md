@@ -52,8 +52,8 @@ project-cygnus/
 
 ### Required Tools
 
-1. **Node.js** (v23+) - Already installed ✓
-2. **Python 3** - Already installed ✓
+1. **Node.js** (v23+) - Required for TypeScript development
+2. **Python 3** - Required for tooling and scripts
 3. **Rust and Cargo** - Required for Soroban contracts
 4. **Stellar CLI** - Required for blockchain interaction
 

@@ -5,10 +5,10 @@ Get up and running with Project Cygnus in minutes!
 ## Prerequisites Check
 
 Ensure you have:
-- ✅ Node.js v20+ installed
-- ✅ Python 3.8+ installed
-- ✅ Git installed
-- ✅ 10GB free disk space
+- Node.js v20+ installed
+- Python 3.8+ installed
+- Git installed
+- 10GB free disk space
 
 ## One-Command Setup
 
@@ -320,11 +320,11 @@ stellar contract invoke --id <contract-id> --source <name> --network testnet -- 
 ## Success Indicators
 
 You're ready to build when:
-- ✅ `stellar version` works
-- ✅ `cargo --version` works
-- ✅ `make build-contracts` succeeds
-- ✅ `make deploy-testnet` succeeds
-- ✅ `make test` passes
-- ✅ Account has testnet XLM balance
+- `stellar version` works
+- `cargo --version` works
+- `make build-contracts` succeeds
+- `make deploy-testnet` succeeds
+- `make test` passes
+- Account has testnet XLM balance
 
-Happy building! 🚀
+Happy building!

@@ -5,7 +5,7 @@
 
 set -e  # Exit on error
 
-echo "🚀 Project Cygnus - Development Environment Setup"
+echo "Project Cygnus - Development Environment Setup"
 echo "=================================================="
 echo ""
 
@@ -22,7 +22,7 @@ command_exists() {
 
 # Print status
 print_status() {
-    echo -e "${GREEN}✓${NC} $1"
+    echo -e "${GREEN}[OK]${NC} $1"
 }
 
 print_error() {
@@ -30,7 +30,7 @@ print_error() {
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠${NC} $1"
+    echo -e "${YELLOW}[WARNING]${NC} $1"
 }
 
 # Check prerequisites
@@ -181,7 +181,7 @@ fi
 # Summary
 echo ""
 echo "=================================================="
-echo "✨ Setup Complete!"
+echo "Setup Complete!"
 echo "=================================================="
 echo ""
 echo "Next steps:"
@@ -199,4 +199,4 @@ echo "Your testnet account:"
 echo "  Public Key: $ALICE_PUBLIC"
 echo "  Balance: $BALANCE"
 echo ""
-echo "Happy building! 🚀"
+echo "Happy building!"
