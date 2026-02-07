@@ -1,116 +1,240 @@
 # Project Cygnus
 
-**Machine Economy: Autonomous Agents and Programmable Payments on the Stellar Blockchain**
-
-This project implements the architecture from *Architecting the Machine Economy* using the **target five-layer stack**:
+**Machine Economy: Autonomous Agents and Programmable Payments on the Stellar Blockchain.**
 
 | Layer | Technology | Role |
 |-------|------------|------|
-| **Settlement (L1)** | Stellar / Soroban | Distributed ledger for final payment settlement and escrow. |
-| **Agent Framework** | **ElizaOS** | TypeScript-based multi-agent OS for logic and memory. |
-| **Payment Protocol** | **x402** | HTTP-native "Payment Required" (402) response cycles. |
-| **Micropayment SDK** | **x402-Flash Stellar SDK** | Off-chain payment channels for <100ms latency on Stellar. |
-| **Identity & Trust** | **Masumi Network** | DIDs, decision logging, and agent marketplace. |
-
-All tech from the PDF are represented: **Stellar, Horizon, Soroban, stellar-sdk**, native/claimable/time-bound payments, **liquidity pools**, agent service, **APScheduler**, **FastAPI**, **PostgreSQL**, **Alembic**, **x402** (402 + verification), **Masumi** client + routes, optional **Celery**; **ElizaOS** and **x402-Flash** have scaffolds/placeholders (see [docs/TECHNOLOGY_INVENTORY.md](docs/TECHNOLOGY_INVENTORY.md)).
+| Settlement (L1) | Stellar / Soroban | Ledger, settlement, escrow |
+| Agent Framework | ElizaOS | Multi-agent logic & memory |
+| Payment Protocol | x402 | HTTP 402 Payment Required |
+| Micropayment SDK | x402-Flash Stellar SDK | Off-chain channels (<100ms) |
+| Identity & Trust | Masumi Network | DIDs, decision logging, marketplace |
 
 ---
 
-## Plan and execution
+## Architecture
 
-See **[PROJECT_PLAN.md](PROJECT_PLAN.md)** for:
+### System overview
 
-- Architecture overview and technology stack  
-- Step-by-step execution plan (Phases 1–7)  
-- Repository layout and environment variables  
+```mermaid
+flowchart TB
+  subgraph Client
+    Browser[Browser]
+    Freighter[Freighter Wallet]
+  end
 
-Implementation follows the plan: Phase 1 (Stellar basics) through Phase 6 (API + persistence), with clean code and no syntax/lint errors (Ruff).
+  subgraph Frontend
+    Vite[Vite + React]
+  end
+
+  subgraph Backend["Backend (FastAPI)"]
+    API[API Routes]
+    Agent[Agent Service]
+    Payments[Payments]
+    Soroban[Soroban Client]
+  end
+
+  subgraph Data
+    DB[(PostgreSQL)]
+  end
+
+  subgraph External
+    Horizon[Stellar Horizon]
+    RPC[Soroban RPC]
+    Masumi[Masumi Network]
+  end
+
+  Browser --> Freighter
+  Browser --> Vite
+  Vite --> API
+  API --> Agent
+  API --> Payments
+  API --> Soroban
+  API --> DB
+  Agent --> Horizon
+  Payments --> Horizon
+  Soroban --> RPC
+  API --> Masumi
+```
+
+### Five-layer stack
+
+```mermaid
+flowchart LR
+  subgraph L1["L1 Settlement"]
+    Stellar[Stellar]
+    Soroban[Soroban]
+  end
+
+  subgraph Agent["Agent Framework"]
+    ElizaOS[ElizaOS]
+  end
+
+  subgraph Protocol["Payment Protocol"]
+    x402[x402]
+  end
+
+  subgraph SDK["Micropayment SDK"]
+    Flash[x402-Flash]
+  end
+
+  subgraph Trust["Identity & Trust"]
+    Masumi[Masumi]
+  end
+
+  L1 --> Agent
+  Protocol --> L1
+  SDK --> L1
+  Trust --> Agent
+```
+
+### Request flow (payments)
+
+```mermaid
+sequenceDiagram
+  participant U as User / Freighter
+  participant F as Frontend
+  participant A as API
+  participant Ag as Agent
+  participant H as Horizon
+
+  U->>F: Connect / Send payment
+  F->>A: POST /api/v1/payments/native
+  A->>Ag: agent_native_payment()
+  Ag->>H: Build & submit tx
+  H-->>Ag: Tx result
+  Ag-->>A: result
+  A-->>F: 200 + result
+  F-->>U: Success
+```
 
 ---
 
-## Setup (Miniconda env `Project_Cygnus`)
+## Folder structure
 
-You already created the conda env `Project_Cygnus`. From the project root:
+```
+Project_Cygnus/
+├── README.md
+├── PROJECT_PLAN.md
+├── pyproject.toml
+├── requirements.txt
+├── environment.yml
+├── .env.example
+├── alembic.ini
+├── alembic/
+│   ├── env.py
+│   └── versions/
+│       └── 001_initial.py
+├── docs/
+│   ├── ARCHITECTURE_STACK.md
+│   ├── TECHNOLOGY_INVENTORY.md
+│   └── X402_FLASH_STELLAR.md
+├── elizaos-cygnus/          # ElizaOS integration scaffold
+│   └── README.md
+├── frontend/                # React + Vite + Freighter
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── public/
+│   └── src/
+│       ├── main.tsx
+│       ├── App.tsx
+│       ├── api.ts
+│       └── pages/
+│           ├── Home.tsx      # Freighter connect, test payment
+│           └── Rankings.tsx  # Agent rankings (trades & profit)
+├── scripts/
+│   └── run_api.py
+├── src/
+│   └── cygnus/
+│       ├── __init__.py
+│       ├── config.py
+│       ├── api/
+│       │   ├── main.py       # FastAPI app, CORS
+│       │   ├── x402.py       # 402 Payment Required
+│       │   └── routes/
+│       │       ├── health.py
+│       │       ├── payments.py
+│       │       ├── stellar_routes.py
+│       │       ├── soroban.py
+│       │       ├── x402_routes.py
+│       │       ├── masumi_routes.py
+│       │       └── agents.py  # GET /rankings
+│       ├── core/
+│       │   ├── agent.py
+│       │   ├── stellar/      # Keys, Horizon, payments, liquidity
+│       │   ├── payments/     # Claimable, time-bound
+│       │   └── soroban/      # RPC client, invoke
+│       ├── db/               # SQLAlchemy models, session
+│       ├── integrations/
+│       │   └── masumi.py
+│       └── scheduler/        # APScheduler, optional Celery
+└── tests/
+    └── test_stellar_keys.py
+```
+
+---
+
+## Setup
 
 ```bash
 conda activate Project_Cygnus
 pip install -e .
 pip install -r requirements.txt
-```
-
-Optional: copy env example and set variables (Stellar testnet is used by default):
-
-```bash
-cp .env.example .env
-# Edit .env: DATABASE_URL, AGENT_SECRET_KEY, etc.
+cp .env.example .env   # optional: set AGENT_SECRET_KEY, DATABASE_URL
 ```
 
 ---
 
-## Run the API
+## Run
+
+**Backend**
 
 ```bash
-conda activate Project_Cygnus
 python scripts/run_api.py
-# Or: uvicorn cygnus.api.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-- **Health:** [http://localhost:8000/health](http://localhost:8000/health)  
-- **Stellar status:** [http://localhost:8000/health/stellar](http://localhost:8000/health/stellar)  
-- **OpenAPI:** [http://localhost:8000/docs](http://localhost:8000/docs)  
+- Health: http://localhost:8000/health  
+- Docs: http://localhost:8000/docs  
 
----
-
-## Frontend (Freighter + Agent Rankings)
-
-A simple React frontend demonstrates the flow and lets you test with **Freighter wallet**:
+**Frontend**
 
 ```bash
-cd frontend
-npm install
-npm run dev
+cd frontend && npm install && npm run dev
 ```
 
-Open http://localhost:5173. Ensure the backend is running on port 8000 (API calls are proxied in dev).
-
-- **Home** — Connect Freighter, see your Stellar address, send a test payment (requires `AGENT_SECRET_KEY` on the backend).
-- **Agent Rankings** — Page ranking agents by highest trades and profits (data from `GET /api/v1/agents/rankings`).
-
-See [frontend/README.md](frontend/README.md) for details.
+- App: http://localhost:5173  
+- Home: Freighter connect, test payment  
+- Agent Rankings: top agents by trades & profit  
 
 ---
 
-## API overview
+## API (concise)
 
 | Area | Endpoints |
 |------|-----------|
-| Health | `GET /health`, `GET /health/version`, `GET /health/stellar` |
-| Payments | `POST /api/v1/payments/native`, `POST /api/v1/payments/claimable`, `POST /api/v1/payments/time-bound` |
-| Stellar (L1) | `GET /api/v1/stellar/liquidity-pools`, `GET /api/v1/stellar/liquidity-pools/{id}` |
+| Health | `GET /health`, `GET /health/stellar` |
+| Payments | `POST /api/v1/payments/native`, `/claimable`, `/time-bound` |
+| Stellar | `GET /api/v1/stellar/liquidity-pools`, `.../liquidity-pools/{id}` |
 | Soroban | `GET /api/v1/soroban/health`, `POST /api/v1/soroban/invoke` |
-| x402 | `GET /api/v1/x402/requirements`, `GET /api/v1/x402/premium` (402 when unpaid) |
+| x402 | `GET /api/v1/x402/requirements`, `GET /api/v1/x402/premium` |
 | Masumi | `GET /api/v1/masumi/availability`, `POST /api/v1/masumi/register` |
-| Agents | `GET /api/v1/agents/rankings` (rank by trades & profit) |
+| Agents | `GET /api/v1/agents/rankings` |
 
-Payment endpoints use the **agent** (configured via `AGENT_SECRET_KEY` in `.env`). Set this to a funded testnet secret key for submissions to succeed.
+Payments require `AGENT_SECRET_KEY` in `.env` (funded testnet key).
 
 ---
 
 ## Database (optional)
 
-For persistence (agents, payment definitions, audit logs), set `DATABASE_URL` in `.env` and run migrations:
-
 ```bash
+# Set DATABASE_URL in .env, then:
 alembic upgrade head
 ```
 
-If you use Alembic, add an initial migration from `cygnus.db.models`. Tables are defined in `src/cygnus/db/models.py`; `init_db()` creates them when `DATABASE_URL` is set.
-
 ---
 
-## Lint and format
-
-With the env activated and Ruff installed (`pip install ruff`):
+## Lint
 
 ```bash
 ruff check src tests scripts
@@ -119,6 +243,11 @@ ruff format src tests scripts
 
 ---
 
-## License
+## More
 
-MIT (see [LICENSE](LICENSE)).
+- **Plan & phases:** [PROJECT_PLAN.md](PROJECT_PLAN.md)  
+- **Stack & integration:** [docs/ARCHITECTURE_STACK.md](docs/ARCHITECTURE_STACK.md)  
+- **Tech inventory:** [docs/TECHNOLOGY_INVENTORY.md](docs/TECHNOLOGY_INVENTORY.md)  
+- **Frontend:** [frontend/README.md](frontend/README.md)  
+
+**License:** MIT — [LICENSE](LICENSE)
