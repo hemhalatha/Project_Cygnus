@@ -1,6 +1,6 @@
 /**
  * Policy Signer
- * 
+ *
  * Non-custodial key management with conditional transaction authorization.
  */
 
@@ -23,7 +23,7 @@ export interface TransactionPolicy {
  */
 export interface TimeWindow {
   start: number; // Hour of day (0-23)
-  end: number;   // Hour of day (0-23)
+  end: number; // Hour of day (0-23)
   daysOfWeek?: number[]; // 0-6 (Sunday-Saturday)
 }
 
@@ -67,10 +67,7 @@ export class PolicySigner {
   /**
    * Evaluate transaction against policy
    */
-  async evaluateTransaction(
-    tx: Transaction,
-    policyId: PolicyId
-  ): Promise<AuthorizationResult> {
+  async evaluateTransaction(tx: Transaction, policyId: PolicyId): Promise<AuthorizationResult> {
     const policy = this.policies.get(policyId);
     if (!policy) {
       return {
@@ -93,10 +90,8 @@ export class PolicySigner {
     // Check allowed recipients
     if (policy.allowedRecipients && policy.allowedRecipients.length > 0) {
       const recipients = this.extractRecipients(tx);
-      const unauthorized = recipients.filter(
-        r => !policy.allowedRecipients!.includes(r)
-      );
-      
+      const unauthorized = recipients.filter(r => !policy.allowedRecipients!.includes(r));
+
       if (unauthorized.length > 0) {
         return {
           authorized: false,
@@ -146,12 +141,9 @@ export class PolicySigner {
   /**
    * Sign transaction if authorized
    */
-  async signIfAuthorized(
-    tx: Transaction,
-    policyId: PolicyId
-  ): Promise<SignedTransaction | null> {
+  async signIfAuthorized(tx: Transaction, policyId: PolicyId): Promise<SignedTransaction | null> {
     const authorization = await this.evaluateTransaction(tx, policyId);
-    
+
     if (!authorization.authorized) {
       console.log(`Transaction not authorized: ${authorization.reason}`);
       return null;
@@ -159,7 +151,7 @@ export class PolicySigner {
 
     // Sign transaction
     const keypair = StellarSdk.Keypair.fromSecret(this.secretKey);
-    
+
     // Convert to Stellar SDK format and sign
     // This is simplified - in production would use proper XDR encoding
     const signature = keypair.sign(Buffer.from(JSON.stringify(tx))).toString('base64');
@@ -232,7 +224,7 @@ export class PolicySigner {
    */
   private calculateTotalAmount(tx: Transaction): number {
     let total = 0;
-    
+
     for (const op of tx.operations) {
       if (op.body.data.amount) {
         total += parseFloat(op.body.data.amount);
@@ -247,7 +239,7 @@ export class PolicySigner {
    */
   private extractRecipients(tx: Transaction): string[] {
     const recipients: string[] = [];
-    
+
     for (const op of tx.operations) {
       if (op.body.data.destination) {
         recipients.push(op.body.data.destination);

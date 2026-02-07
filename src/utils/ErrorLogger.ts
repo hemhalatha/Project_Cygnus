@@ -1,6 +1,6 @@
 /**
  * Comprehensive Error Logging System
- * 
+ *
  * Provides structured error logging with context, severity levels,
  * and alerting capabilities.
  */
@@ -140,11 +140,7 @@ export class ErrorLogger {
   /**
    * Log network failure
    */
-  logNetworkFailure(
-    error: Error,
-    endpoint: string,
-    operation: string
-  ): ErrorLog {
+  logNetworkFailure(error: Error, endpoint: string, operation: string): ErrorLog {
     return this.logError(
       error,
       {
@@ -159,11 +155,7 @@ export class ErrorLogger {
   /**
    * Log validation failure
    */
-  logValidationFailure(
-    error: Error,
-    input: any,
-    operation: string
-  ): ErrorLog {
+  logValidationFailure(error: Error, input: any, operation: string): ErrorLog {
     return this.logError(
       error,
       {
@@ -178,11 +170,7 @@ export class ErrorLogger {
   /**
    * Log cryptographic failure
    */
-  logCryptographicFailure(
-    error: Error,
-    operation: string,
-    agentDID?: string
-  ): ErrorLog {
+  logCryptographicFailure(error: Error, operation: string, agentDID?: string): ErrorLog {
     return this.logError(
       error,
       {
@@ -227,9 +215,7 @@ export class ErrorLogger {
    * Get errors by component
    */
   getErrorsByComponent(component: string): ErrorLog[] {
-    return this.logs.filter(
-      log => log.context.component === component && !log.resolved
-    );
+    return this.logs.filter(log => log.context.component === component && !log.resolved);
   }
 
   /**
@@ -271,18 +257,16 @@ export class ErrorLogger {
    */
   private logToConsole(log: ErrorLog): void {
     const severityColors = {
-      [ErrorSeverity.LOW]: '\x1b[36m',      // Cyan
-      [ErrorSeverity.MEDIUM]: '\x1b[33m',   // Yellow
-      [ErrorSeverity.HIGH]: '\x1b[31m',     // Red
+      [ErrorSeverity.LOW]: '\x1b[36m', // Cyan
+      [ErrorSeverity.MEDIUM]: '\x1b[33m', // Yellow
+      [ErrorSeverity.HIGH]: '\x1b[31m', // Red
       [ErrorSeverity.CRITICAL]: '\x1b[35m', // Magenta
     };
 
     const color = severityColors[log.severity];
     const reset = '\x1b[0m';
 
-    console.error(
-      `${color}[${log.severity}]${reset} ${log.errorType}: ${log.errorMessage}`
-    );
+    console.error(`${color}[${log.severity}]${reset} ${log.errorType}: ${log.errorMessage}`);
     console.error(`  Operation: ${log.context.operation}`);
     if (log.context.component) {
       console.error(`  Component: ${log.context.component}`);

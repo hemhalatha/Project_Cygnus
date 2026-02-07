@@ -1,6 +1,6 @@
 /**
  * Stellar Client Wrapper
- * 
+ *
  * Wraps Stellar SDK with custom client for transaction construction,
  * signing, and broadcasting.
  */
@@ -28,32 +28,28 @@ export class StellarClient {
 
   constructor(config: StellarClientConfig) {
     this.network = config.network;
-    
+
     // Set network passphrase
-    this.networkPassphrase = config.network === 'testnet'
-      ? StellarSdk.Networks.TESTNET
-      : StellarSdk.Networks.PUBLIC;
+    this.networkPassphrase =
+      config.network === 'testnet' ? StellarSdk.Networks.TESTNET : StellarSdk.Networks.PUBLIC;
 
     // Initialize Horizon server
-    const horizonUrl = config.horizonUrl || (
-      config.network === 'testnet'
+    const horizonUrl =
+      config.horizonUrl ||
+      (config.network === 'testnet'
         ? 'https://horizon-testnet.stellar.org'
-        : 'https://horizon.stellar.org'
-    );
-    
+        : 'https://horizon.stellar.org');
+
     this.server = new StellarSdk.Horizon.Server(horizonUrl);
   }
 
   /**
    * Construct a transaction
    */
-  async constructTransaction(
-    sourceAccount: string,
-    params: TxParams
-  ): Promise<Transaction> {
+  async constructTransaction(sourceAccount: string, params: TxParams): Promise<Transaction> {
     // Load account to get sequence number
     const account = await this.server.loadAccount(sourceAccount);
-    
+
     // Create transaction builder
     const txBuilder = new StellarSdk.TransactionBuilder(account, {
       fee: StellarSdk.BASE_FEE,
@@ -69,9 +65,10 @@ export class StellarClient {
         txBuilder.addOperation(
           StellarSdk.Operation.payment({
             destination: params.destination,
-            asset: params.asset === 'XLM' 
-              ? StellarSdk.Asset.native()
-              : new StellarSdk.Asset(params.asset, params.destination),
+            asset:
+              params.asset === 'XLM'
+                ? StellarSdk.Asset.native()
+                : new StellarSdk.Asset(params.asset, params.destination),
             amount: params.amount.toString(),
           })
         );
@@ -83,9 +80,7 @@ export class StellarClient {
         }
         // Soroban contract invocation
         const contract = new StellarSdk.Contract(params.contractId);
-        txBuilder.addOperation(
-          contract.call(params.functionName, ...(params.args || []))
-        );
+        txBuilder.addOperation(contract.call(params.functionName, ...(params.args || [])));
         break;
 
       case 'create_account':
@@ -114,7 +109,7 @@ export class StellarClient {
 
     // Build transaction
     const stellarTx = txBuilder.build();
-    
+
     // Convert to our internal format
     const xdr = stellarTx.toXDR('base64');
     return decodeTransactionFromXDR(xdr);
@@ -123,21 +118,15 @@ export class StellarClient {
   /**
    * Sign a transaction
    */
-  async signTransaction(
-    tx: Transaction,
-    secretKey: string
-  ): Promise<SignedTransaction> {
+  async signTransaction(tx: Transaction, secretKey: string): Promise<SignedTransaction> {
     // Convert to Stellar SDK transaction
     const keypair = StellarSdk.Keypair.fromSecret(secretKey);
-    
+
     // Encode transaction to XDR
     const xdr = encodeTransaction(tx);
-    
+
     // Load transaction from XDR
-    const stellarTx = StellarSdk.TransactionBuilder.fromXDR(
-      xdr,
-      this.networkPassphrase
-    );
+    const stellarTx = StellarSdk.TransactionBuilder.fromXDR(xdr, this.networkPassphrase);
 
     // Sign transaction
     stellarTx.sign(keypair);
@@ -145,9 +134,7 @@ export class StellarClient {
     // Get signature
     const envelope = stellarTx.toEnvelope();
     const signatures = envelope.signatures();
-    const signature = signatures.length > 0 
-      ? signatures[0].signature().toString('base64')
-      : '';
+    const signature = signatures.length > 0 ? signatures[0].signature().toString('base64') : '';
 
     // Get hash
     const hash = stellarTx.hash().toString('hex');
@@ -166,12 +153,9 @@ export class StellarClient {
     try {
       // Encode signed transaction
       const xdr = encodeTransaction(signedTx.transaction);
-      
+
       // Load and sign transaction
-      const stellarTx = StellarSdk.TransactionBuilder.fromXDR(
-        xdr,
-        this.networkPassphrase
-      );
+      const stellarTx = StellarSdk.TransactionBuilder.fromXDR(xdr, this.networkPassphrase);
 
       // Submit to network
       const response = await this.server.submitTransaction(stellarTx as any);
@@ -196,7 +180,7 @@ export class StellarClient {
   async getTransactionStatus(hash: string): Promise<TxResult> {
     try {
       const response = await this.server.transactions().transaction(hash).call();
-      
+
       return {
         success: response.successful,
         hash: response.hash,
@@ -217,9 +201,7 @@ export class StellarClient {
   async getBalance(publicKey: string): Promise<number> {
     try {
       const account = await this.server.loadAccount(publicKey);
-      const nativeBalance = account.balances.find(
-        (b: any) => b.asset_type === 'native'
-      );
+      const nativeBalance = account.balances.find((b: any) => b.asset_type === 'native');
       return nativeBalance ? parseFloat(nativeBalance.balance) : 0;
     } catch (error) {
       throw new Error(`Failed to get balance: ${error}`);

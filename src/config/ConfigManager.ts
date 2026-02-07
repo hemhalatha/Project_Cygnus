@@ -1,6 +1,6 @@
 /**
  * Configuration Management System
- * 
+ *
  * Provides environment-specific configuration loading and validation
  * with support for testnet and mainnet environments.
  */
@@ -109,9 +109,7 @@ export class ConfigManager {
     // Validate configuration
     this.validate();
 
-    console.log(
-      `[ConfigManager] Configuration loaded for ${this.config.environment}`
-    );
+    console.log(`[ConfigManager] Configuration loaded for ${this.config.environment}`);
 
     return this.config;
   }
@@ -175,11 +173,7 @@ export class ConfigManager {
       fs.mkdirSync(configDir, { recursive: true });
     }
 
-    fs.writeFileSync(
-      this.configPath,
-      JSON.stringify(configToSave, null, 2),
-      'utf-8'
-    );
+    fs.writeFileSync(this.configPath, JSON.stringify(configToSave, null, 2), 'utf-8');
 
     console.log(`[ConfigManager] Configuration saved to ${this.configPath}`);
   }
@@ -209,10 +203,7 @@ export class ConfigManager {
     if (config.agent.maxConcurrentOperations <= 0) {
       throw new Error('Max concurrent operations must be positive');
     }
-    if (
-      config.agent.defaultRiskTolerance < 0 ||
-      config.agent.defaultRiskTolerance > 1
-    ) {
+    if (config.agent.defaultRiskTolerance < 0 || config.agent.defaultRiskTolerance > 1) {
       throw new Error('Default risk tolerance must be between 0 and 1');
     }
 
@@ -396,8 +387,7 @@ export class ConfigManager {
 
     // Stellar configuration
     if (process.env.STELLAR_NETWORK_PASSPHRASE) {
-      this.config.stellar.networkPassphrase =
-        process.env.STELLAR_NETWORK_PASSPHRASE;
+      this.config.stellar.networkPassphrase = process.env.STELLAR_NETWORK_PASSPHRASE;
     }
     if (process.env.STELLAR_HORIZON_URL) {
       this.config.stellar.horizonUrl = process.env.STELLAR_HORIZON_URL;
@@ -408,16 +398,12 @@ export class ConfigManager {
 
     // Payment configuration
     if (process.env.X402_SERVER_PORT) {
-      this.config.payment.x402.serverPort = parseInt(
-        process.env.X402_SERVER_PORT,
-        10
-      );
+      this.config.payment.x402.serverPort = parseInt(process.env.X402_SERVER_PORT, 10);
     }
 
     // Security configuration
     if (process.env.RATE_LIMITING_ENABLED) {
-      this.config.security.rateLimiting.enabled =
-        process.env.RATE_LIMITING_ENABLED === 'true';
+      this.config.security.rateLimiting.enabled = process.env.RATE_LIMITING_ENABLED === 'true';
     }
 
     // Monitoring configuration

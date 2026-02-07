@@ -1,6 +1,6 @@
 /**
  * Project Cygnus - Machine Economy Stack
- * 
+ *
  * Main entry point for the autonomous agentic ecosystem on Stellar blockchain.
  */
 

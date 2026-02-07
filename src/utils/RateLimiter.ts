@@ -1,13 +1,13 @@
 /**
  * Rate Limiter Implementation
- * 
+ *
  * Provides rate limiting using token bucket and sliding window algorithms
  * to prevent denial-of-service attacks.
  */
 
 export interface RateLimitConfig {
-  maxRequests: number;      // Maximum requests per window
-  windowMs: number;          // Time window in milliseconds
+  maxRequests: number; // Maximum requests per window
+  windowMs: number; // Time window in milliseconds
   algorithm: 'token-bucket' | 'sliding-window';
   keyGenerator?: (req: any) => string;
 }
@@ -54,9 +54,7 @@ export class TokenBucketRateLimiter {
 
     // Refill tokens based on time elapsed
     const timeSinceRefill = now - bucket.lastRefill;
-    const tokensToAdd = Math.floor(
-      (timeSinceRefill / 1000) * this.refillRate
-    );
+    const tokensToAdd = Math.floor((timeSinceRefill / 1000) * this.refillRate);
 
     if (tokensToAdd > 0) {
       bucket.tokens = Math.min(this.maxTokens, bucket.tokens + tokensToAdd);
@@ -189,16 +187,9 @@ export class RateLimiter {
   constructor(config: RateLimitConfig) {
     if (config.algorithm === 'token-bucket') {
       const refillRate = config.maxRequests / (config.windowMs / 1000);
-      this.limiter = new TokenBucketRateLimiter(
-        config.maxRequests,
-        refillRate,
-        config.windowMs
-      );
+      this.limiter = new TokenBucketRateLimiter(config.maxRequests, refillRate, config.windowMs);
     } else {
-      this.limiter = new SlidingWindowRateLimiter(
-        config.maxRequests,
-        config.windowMs
-      );
+      this.limiter = new SlidingWindowRateLimiter(config.maxRequests, config.windowMs);
     }
 
     this.keyGenerator = config.keyGenerator || this.defaultKeyGenerator;
@@ -220,9 +211,12 @@ export class RateLimiter {
       const result = await this.checkLimit(req);
 
       // Set rate limit headers
-      res.setHeader('X-RateLimit-Limit', this.limiter instanceof TokenBucketRateLimiter 
-        ? (this.limiter as any).maxTokens 
-        : (this.limiter as any).maxRequests);
+      res.setHeader(
+        'X-RateLimit-Limit',
+        this.limiter instanceof TokenBucketRateLimiter
+          ? (this.limiter as any).maxTokens
+          : (this.limiter as any).maxRequests
+      );
       res.setHeader('X-RateLimit-Remaining', result.remaining);
       res.setHeader('X-RateLimit-Reset', result.resetTime);
 
@@ -270,10 +264,7 @@ export class RateLimiterManager {
   /**
    * Create rate limiter for endpoint
    */
-  createLimiter(
-    endpoint: string,
-    config: RateLimitConfig
-  ): RateLimiter {
+  createLimiter(endpoint: string, config: RateLimitConfig): RateLimiter {
     const limiter = new RateLimiter(config);
     this.limiters.set(endpoint, limiter);
     return limiter;

@@ -1,6 +1,6 @@
 /**
  * XDR Decoder
- * 
+ *
  * Decodes XDR binary format to Stellar transaction structures.
  */
 
@@ -25,22 +25,22 @@ import {
 export function decodeTransactionEnvelope(xdrString: string): TransactionEnvelope {
   try {
     const envelope = StellarSdk.xdr.TransactionEnvelope.fromXDR(xdrString, 'base64');
-    
+
     // Extract transaction based on envelope type
     let tx: any;
     let signatures: any[] = [];
-    
+
     switch (envelope.switch()) {
       case StellarSdk.xdr.EnvelopeType.envelopeTypeTx():
         tx = envelope.v1().tx();
         signatures = envelope.v1().signatures();
         break;
-      
+
       case StellarSdk.xdr.EnvelopeType.envelopeTypeTxV0():
         tx = envelope.v0().tx();
         signatures = envelope.v0().signatures();
         break;
-      
+
       default:
         throw new Error('Unsupported envelope type');
     }
@@ -59,17 +59,17 @@ export function decodeTransactionEnvelope(xdrString: string): TransactionEnvelop
  */
 export function decodeTransaction(xdrTx: any): Transaction {
   try {
-    const sourceAccount = StellarSdk.StrKey.encodeEd25519PublicKey(
-      xdrTx.sourceAccount().ed25519()
-    );
+    const sourceAccount = StellarSdk.StrKey.encodeEd25519PublicKey(xdrTx.sourceAccount().ed25519());
 
     const fee = xdrTx.fee().toNumber();
     const seqNum = xdrTx.seqNum().toString();
-    
-    const timeBounds = xdrTx.timeBounds() ? {
-      minTime: xdrTx.timeBounds().minTime().toString(),
-      maxTime: xdrTx.timeBounds().maxTime().toString(),
-    } : undefined;
+
+    const timeBounds = xdrTx.timeBounds()
+      ? {
+          minTime: xdrTx.timeBounds().minTime().toString(),
+          maxTime: xdrTx.timeBounds().maxTime().toString(),
+        }
+      : undefined;
 
     const memo = decodeMemo(xdrTx.memo());
     const operations = xdrTx.operations().map(decodeOperation);
@@ -92,19 +92,18 @@ export function decodeTransaction(xdrTx: any): Transaction {
  */
 export function decodeTransactionFromXDR(xdrString: string): Transaction {
   try {
-    const tx = StellarSdk.TransactionBuilder.fromXDR(
-      xdrString,
-      StellarSdk.Networks.TESTNET
-    );
+    const tx = StellarSdk.TransactionBuilder.fromXDR(xdrString, StellarSdk.Networks.TESTNET);
 
     return {
       sourceAccount: tx.source,
       fee: parseInt(tx.fee),
       seqNum: tx.sequence,
-      timeBounds: tx.timeBounds ? {
-        minTime: tx.timeBounds.minTime,
-        maxTime: tx.timeBounds.maxTime,
-      } : undefined,
+      timeBounds: tx.timeBounds
+        ? {
+            minTime: tx.timeBounds.minTime,
+            maxTime: tx.timeBounds.maxTime,
+          }
+        : undefined,
       memo: {
         type: getMemoType(tx.memo),
         value: tx.memo.value,
@@ -127,35 +126,35 @@ export function decodeTransactionFromXDR(xdrString: string): Transaction {
  */
 function decodeMemo(xdrMemo: any): Memo {
   const memoType = xdrMemo.switch();
-  
+
   switch (memoType.name) {
     case 'memoNone':
       return { type: MemoType.MEMO_NONE };
-    
+
     case 'memoText':
       return {
         type: MemoType.MEMO_TEXT,
         value: xdrMemo.text().toString('utf8'),
       };
-    
+
     case 'memoId':
       return {
         type: MemoType.MEMO_ID,
         value: xdrMemo.id().toString(),
       };
-    
+
     case 'memoHash':
       return {
         type: MemoType.MEMO_HASH,
         value: xdrMemo.hash(),
       };
-    
+
     case 'memoReturn':
       return {
         type: MemoType.MEMO_RETURN,
         value: xdrMemo.retHash(),
       };
-    
+
     default:
       return { type: MemoType.MEMO_NONE };
   }
@@ -182,14 +181,14 @@ function decodeOperation(xdrOp: any): Operation {
  */
 function decodeOperationBody(xdrBody: any): OperationBody {
   const opType = xdrBody.switch();
-  
+
   switch (opType.name) {
     case 'payment':
       return {
         type: 1, // PAYMENT
         data: decodePaymentOp(xdrBody.paymentOp()),
       };
-    
+
     // Add more operation types as needed
     default:
       return {
@@ -203,10 +202,8 @@ function decodeOperationBody(xdrBody: any): OperationBody {
  * Decodes a payment operation
  */
 function decodePaymentOp(xdrPayment: any): PaymentOp {
-  const destination = StellarSdk.StrKey.encodeEd25519PublicKey(
-    xdrPayment.destination().ed25519()
-  );
-  
+  const destination = StellarSdk.StrKey.encodeEd25519PublicKey(xdrPayment.destination().ed25519());
+
   const asset = decodeAsset(xdrPayment.asset());
   const amount = xdrPayment.amount().toString();
 
@@ -222,13 +219,13 @@ function decodePaymentOp(xdrPayment: any): PaymentOp {
  */
 function decodeAsset(xdrAsset: any): Asset {
   const assetType = xdrAsset.switch();
-  
+
   switch (assetType.name) {
     case 'assetTypeNative':
       return {
         type: AssetType.ASSET_TYPE_NATIVE,
       };
-    
+
     case 'assetTypeCreditAlphanum4':
       const alpha4 = xdrAsset.alphaNum4();
       return {
@@ -236,7 +233,7 @@ function decodeAsset(xdrAsset: any): Asset {
         code: alpha4.assetCode().toString('utf8').replace(/\0/g, ''),
         issuer: StellarSdk.StrKey.encodeEd25519PublicKey(alpha4.issuer().ed25519()),
       };
-    
+
     case 'assetTypeCreditAlphanum12':
       const alpha12 = xdrAsset.alphaNum12();
       return {
@@ -244,7 +241,7 @@ function decodeAsset(xdrAsset: any): Asset {
         code: alpha12.assetCode().toString('utf8').replace(/\0/g, ''),
         issuer: StellarSdk.StrKey.encodeEd25519PublicKey(alpha12.issuer().ed25519()),
       };
-    
+
     default:
       throw new Error(`Unsupported asset type: ${assetType.name}`);
   }
@@ -277,35 +274,35 @@ function getMemoType(memo: StellarSdk.Memo): MemoType {
  */
 function getOperationType(opType: string): number {
   const typeMap: Record<string, number> = {
-    'createAccount': 0,
-    'payment': 1,
-    'pathPaymentStrictReceive': 2,
-    'manageSellOffer': 3,
-    'createPassiveSellOffer': 4,
-    'setOptions': 5,
-    'changeTrust': 6,
-    'allowTrust': 7,
-    'accountMerge': 8,
-    'inflation': 9,
-    'manageData': 10,
-    'bumpSequence': 11,
-    'manageBuyOffer': 12,
-    'pathPaymentStrictSend': 13,
-    'createClaimableBalance': 14,
-    'claimClaimableBalance': 15,
-    'beginSponsoringFutureReserves': 16,
-    'endSponsoringFutureReserves': 17,
-    'revokeSponsorship': 18,
-    'clawback': 19,
-    'clawbackClaimableBalance': 20,
-    'setTrustLineFlags': 21,
-    'liquidityPoolDeposit': 22,
-    'liquidityPoolWithdraw': 23,
-    'invokeHostFunction': 24,
-    'extendFootprintTtl': 25,
-    'restoreFootprint': 26,
+    createAccount: 0,
+    payment: 1,
+    pathPaymentStrictReceive: 2,
+    manageSellOffer: 3,
+    createPassiveSellOffer: 4,
+    setOptions: 5,
+    changeTrust: 6,
+    allowTrust: 7,
+    accountMerge: 8,
+    inflation: 9,
+    manageData: 10,
+    bumpSequence: 11,
+    manageBuyOffer: 12,
+    pathPaymentStrictSend: 13,
+    createClaimableBalance: 14,
+    claimClaimableBalance: 15,
+    beginSponsoringFutureReserves: 16,
+    endSponsoringFutureReserves: 17,
+    revokeSponsorship: 18,
+    clawback: 19,
+    clawbackClaimableBalance: 20,
+    setTrustLineFlags: 21,
+    liquidityPoolDeposit: 22,
+    liquidityPoolWithdraw: 23,
+    invokeHostFunction: 24,
+    extendFootprintTtl: 25,
+    restoreFootprint: 26,
   };
-  
+
   return typeMap[opType] ?? -1;
 }
 
@@ -315,17 +312,17 @@ function getOperationType(opType: string): number {
 export function decodeFromXDR(xdrString: string, type: string): any {
   try {
     const xdr = StellarSdk.xdr;
-    
+
     switch (type) {
       case 'TransactionEnvelope':
         return xdr.TransactionEnvelope.fromXDR(xdrString, 'base64');
-      
+
       case 'Transaction':
         return xdr.Transaction.fromXDR(xdrString, 'base64');
-      
+
       case 'TransactionResult':
         return xdr.TransactionResult.fromXDR(xdrString, 'base64');
-      
+
       default:
         throw new Error(`Unsupported XDR type: ${type}`);
     }

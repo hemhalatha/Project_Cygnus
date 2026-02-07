@@ -1,6 +1,6 @@
 /**
  * XDR Serialization Module
- * 
+ *
  * Provides encoding and decoding utilities for Stellar XDR format.
  * XDR (External Data Representation) is the binary format used by
  * Stellar for network communication and transaction serialization.

@@ -1,22 +1,22 @@
 /**
  * Circuit Breaker Pattern Implementation
- * 
+ *
  * Prevents cascading failures by stopping requests to failing services
  * and allowing them time to recover.
  */
 
 export enum CircuitState {
-  CLOSED = 'CLOSED',     // Normal operation
-  OPEN = 'OPEN',         // Failing, rejecting requests
+  CLOSED = 'CLOSED', // Normal operation
+  OPEN = 'OPEN', // Failing, rejecting requests
   HALF_OPEN = 'HALF_OPEN', // Testing if service recovered
 }
 
 export interface CircuitBreakerConfig {
-  failureThreshold: number;      // Number of failures before opening
-  successThreshold: number;      // Number of successes to close from half-open
-  timeout: number;               // Time to wait before half-open (ms)
-  monitoringPeriod: number;      // Time window for failure counting (ms)
-  volumeThreshold: number;       // Minimum requests before circuit can open
+  failureThreshold: number; // Number of failures before opening
+  successThreshold: number; // Number of successes to close from half-open
+  timeout: number; // Time to wait before half-open (ms)
+  monitoringPeriod: number; // Time window for failure counting (ms)
+  volumeThreshold: number; // Minimum requests before circuit can open
 }
 
 export interface CircuitBreakerStats {
@@ -64,9 +64,7 @@ export class CircuitBreaker {
       if (this.shouldAttemptReset()) {
         this.transitionTo(CircuitState.HALF_OPEN);
       } else {
-        throw new Error(
-          `Circuit breaker [${this.name}] is OPEN. Service unavailable.`
-        );
+        throw new Error(`Circuit breaker [${this.name}] is OPEN. Service unavailable.`);
       }
     }
 
@@ -90,10 +88,7 @@ export class CircuitBreaker {
     try {
       return await this.execute(operation);
     } catch (error) {
-      console.warn(
-        `[CircuitBreaker] ${this.name} failed, using fallback:`,
-        error
-      );
+      console.warn(`[CircuitBreaker] ${this.name} failed, using fallback:`, error);
       return await fallback();
     }
   }
@@ -142,10 +137,7 @@ export class CircuitBreaker {
         const recentFailures = recentRequests.filter(r => !r.success).length;
         const failureRate = recentFailures / recentRequests.length;
 
-        if (
-          this.consecutiveFailures >= config.failureThreshold ||
-          failureRate >= 0.5
-        ) {
+        if (this.consecutiveFailures >= config.failureThreshold || failureRate >= 0.5) {
           this.transitionTo(CircuitState.OPEN);
         }
       }
@@ -172,9 +164,7 @@ export class CircuitBreaker {
     this.state = newState;
     this.lastStateChange = Date.now();
 
-    console.log(
-      `[CircuitBreaker] ${this.name} transitioned from ${oldState} to ${newState}`
-    );
+    console.log(`[CircuitBreaker] ${this.name} transitioned from ${oldState} to ${newState}`);
 
     // Reset counters on state change
     if (newState === CircuitState.CLOSED) {
@@ -263,10 +253,7 @@ export class CircuitBreakerManager {
   /**
    * Get or create circuit breaker for service
    */
-  getBreaker(
-    serviceName: string,
-    config?: Partial<CircuitBreakerConfig>
-  ): CircuitBreaker {
+  getBreaker(serviceName: string, config?: Partial<CircuitBreakerConfig>): CircuitBreaker {
     if (!this.breakers.has(serviceName)) {
       this.breakers.set(serviceName, new CircuitBreaker(serviceName, config));
     }

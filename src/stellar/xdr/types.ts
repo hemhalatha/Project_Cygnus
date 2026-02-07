@@ -1,6 +1,6 @@
 /**
  * XDR (External Data Representation) Type Definitions
- * 
+ *
  * These types represent Stellar transaction structures that can be
  * serialized to/from XDR binary format for network communication.
  */

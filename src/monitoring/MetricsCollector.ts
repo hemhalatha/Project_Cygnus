@@ -1,6 +1,6 @@
 /**
  * Performance Metrics Collection System
- * 
+ *
  * Collects and tracks performance metrics for transaction finality,
  * payment channel latency, x402 handshake duration, and agent decision-making.
  */
@@ -58,7 +58,7 @@ export class MetricsCollector {
    */
   record(name: string, value: number, tags?: Record<string, string>): void {
     const key = this.getMetricKey(name, tags);
-    
+
     if (!this.metrics.has(key)) {
       this.metrics.set(key, []);
     }
@@ -317,11 +317,7 @@ export class Timer {
  * Decorator for automatic timing
  */
 export function Timed(metricName: string, collector: MetricsCollector) {
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor
-  ) {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {

@@ -1,6 +1,6 @@
 /**
  * Retry Handler with Exponential Backoff
- * 
+ *
  * Provides retry logic for network operations and external dependencies
  * with configurable exponential backoff and jitter.
  */
@@ -29,13 +29,7 @@ export class RetryHandler {
     maxDelay: 30000,
     exponentialBase: 2,
     jitter: true,
-    retryableErrors: [
-      'ECONNREFUSED',
-      'ETIMEDOUT',
-      'ENOTFOUND',
-      'ENETUNREACH',
-      'EAI_AGAIN',
-    ],
+    retryableErrors: ['ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'ENETUNREACH', 'EAI_AGAIN'],
   };
 
   constructor(private config: Partial<RetryConfig> = {}) {
@@ -45,10 +39,7 @@ export class RetryHandler {
   /**
    * Execute operation with retry logic
    */
-  async execute<T>(
-    operation: () => Promise<T>,
-    operationName: string = 'operation'
-  ): Promise<T> {
+  async execute<T>(operation: () => Promise<T>, operationName: string = 'operation'): Promise<T> {
     const config = this.config as RetryConfig;
     let lastError: Error | undefined;
     let totalDelay = 0;
@@ -56,31 +47,24 @@ export class RetryHandler {
     for (let attempt = 0; attempt <= config.maxRetries; attempt++) {
       try {
         const result = await operation();
-        
+
         if (attempt > 0) {
-          console.log(
-            `[RetryHandler] ${operationName} succeeded after ${attempt} retries`
-          );
+          console.log(`[RetryHandler] ${operationName} succeeded after ${attempt} retries`);
         }
-        
+
         return result;
       } catch (error) {
         lastError = error as Error;
-        
+
         // Check if error is retryable
         if (!this.isRetryable(error as Error)) {
-          console.error(
-            `[RetryHandler] ${operationName} failed with non-retryable error:`,
-            error
-          );
+          console.error(`[RetryHandler] ${operationName} failed with non-retryable error:`, error);
           throw error;
         }
 
         // Don't retry if we've exhausted attempts
         if (attempt === config.maxRetries) {
-          console.error(
-            `[RetryHandler] ${operationName} failed after ${attempt + 1} attempts`
-          );
+          console.error(`[RetryHandler] ${operationName} failed after ${attempt + 1} attempts`);
           break;
         }
 
@@ -153,19 +137,19 @@ export class RetryHandler {
    */
   private calculateDelay(attempt: number): number {
     const config = this.config as RetryConfig;
-    
+
     // Exponential backoff: baseDelay * (exponentialBase ^ attempt)
     let delay = config.baseDelay * Math.pow(config.exponentialBase, attempt);
-    
+
     // Cap at maxDelay
     delay = Math.min(delay, config.maxDelay);
-    
+
     // Add jitter to prevent thundering herd
     if (config.jitter) {
       const jitterAmount = delay * 0.1; // 10% jitter
       delay = delay + (Math.random() * jitterAmount * 2 - jitterAmount);
     }
-    
+
     return Math.floor(delay);
   }
 
@@ -174,12 +158,12 @@ export class RetryHandler {
    */
   private isRetryable(error: Error): boolean {
     const config = this.config as RetryConfig;
-    
+
     // Check error code
     if ('code' in error && config.retryableErrors) {
       return config.retryableErrors.includes((error as any).code);
     }
-    
+
     // Check error message for common retryable patterns
     const message = error.message.toLowerCase();
     const retryablePatterns = [
@@ -191,7 +175,7 @@ export class RetryHandler {
       'rate limit',
       'too many requests',
     ];
-    
+
     return retryablePatterns.some(pattern => message.includes(pattern));
   }
 
@@ -214,11 +198,7 @@ export class RetryHandler {
  * Decorator for automatic retry
  */
 export function Retry(config?: Partial<RetryConfig>) {
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor
-  ) {
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
     const retryHandler = new RetryHandler(config);
 

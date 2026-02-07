@@ -1,6 +1,6 @@
 /**
  * Input Validation Utilities
- * 
+ *
  * Provides validation functions for payment proofs, credentials,
  * DIDs, and transaction data.
  */
@@ -29,19 +29,11 @@ export class InputValidator {
     }
 
     if (!proof.type || !['on-chain', 'channel'].includes(proof.type)) {
-      throw new ValidationError(
-        'Invalid payment proof type',
-        'type',
-        proof.type
-      );
+      throw new ValidationError('Invalid payment proof type', 'type', proof.type);
     }
 
     if (!proof.timestamp || proof.timestamp <= 0) {
-      throw new ValidationError(
-        'Invalid timestamp',
-        'timestamp',
-        proof.timestamp
-      );
+      throw new ValidationError('Invalid timestamp', 'timestamp', proof.timestamp);
     }
 
     // Validate timestamp is not too old (24 hours)
@@ -69,10 +61,7 @@ export class InputValidator {
 
     if (proof.type === 'channel') {
       if (!proof.channelState) {
-        throw new ValidationError(
-          'Channel state required for channel proof',
-          'channelState'
-        );
+        throw new ValidationError('Channel state required for channel proof', 'channelState');
       }
 
       this.validateChannelState(proof.channelState);
@@ -88,17 +77,11 @@ export class InputValidator {
     }
 
     if (!state.participants || state.participants.length !== 2) {
-      throw new ValidationError(
-        'Channel must have exactly 2 participants',
-        'participants'
-      );
+      throw new ValidationError('Channel must have exactly 2 participants', 'participants');
     }
 
     if (!state.balances || state.balances.length !== 2) {
-      throw new ValidationError(
-        'Channel must have exactly 2 balances',
-        'balances'
-      );
+      throw new ValidationError('Channel must have exactly 2 balances', 'balances');
     }
 
     if (state.balances.some((b: number) => b < 0)) {
@@ -110,10 +93,7 @@ export class InputValidator {
     }
 
     if (!state.signatures || state.signatures.length !== 2) {
-      throw new ValidationError(
-        'Channel state must have 2 signatures',
-        'signatures'
-      );
+      throw new ValidationError('Channel state must have 2 signatures', 'signatures');
     }
   }
 
@@ -143,17 +123,11 @@ export class InputValidator {
     this.validateDID(doc.id);
 
     if (!doc.publicKey || doc.publicKey.length === 0) {
-      throw new ValidationError(
-        'DID document must have at least one public key',
-        'publicKey'
-      );
+      throw new ValidationError('DID document must have at least one public key', 'publicKey');
     }
 
     if (!doc.authentication || doc.authentication.length === 0) {
-      throw new ValidationError(
-        'DID document must have authentication methods',
-        'authentication'
-      );
+      throw new ValidationError('DID document must have authentication methods', 'authentication');
     }
   }
 
@@ -176,33 +150,19 @@ export class InputValidator {
     this.validateDID(vc.issuer);
 
     if (!vc.issuanceDate) {
-      throw new ValidationError(
-        'Credential must have issuance date',
-        'issuanceDate'
-      );
+      throw new ValidationError('Credential must have issuance date', 'issuanceDate');
     }
 
     if (!this.isValidDate(vc.issuanceDate)) {
-      throw new ValidationError(
-        'Invalid issuance date',
-        'issuanceDate',
-        vc.issuanceDate
-      );
+      throw new ValidationError('Invalid issuance date', 'issuanceDate', vc.issuanceDate);
     }
 
     if (vc.expirationDate && !this.isValidDate(vc.expirationDate)) {
-      throw new ValidationError(
-        'Invalid expiration date',
-        'expirationDate',
-        vc.expirationDate
-      );
+      throw new ValidationError('Invalid expiration date', 'expirationDate', vc.expirationDate);
     }
 
     if (!vc.credentialSubject) {
-      throw new ValidationError(
-        'Credential must have subject',
-        'credentialSubject'
-      );
+      throw new ValidationError('Credential must have subject', 'credentialSubject');
     }
 
     if (!vc.proof) {
@@ -223,11 +183,7 @@ export class InputValidator {
     }
 
     if (!this.isValidStellarAddress(tx.source)) {
-      throw new ValidationError(
-        'Invalid source address',
-        'source',
-        tx.source
-      );
+      throw new ValidationError('Invalid source address', 'source', tx.source);
     }
 
     if (!tx.fee || tx.fee <= 0) {
@@ -239,10 +195,7 @@ export class InputValidator {
     }
 
     if (!tx.operations || tx.operations.length === 0) {
-      throw new ValidationError(
-        'Transaction must have at least one operation',
-        'operations'
-      );
+      throw new ValidationError('Transaction must have at least one operation', 'operations');
     }
   }
 
@@ -251,27 +204,15 @@ export class InputValidator {
    */
   static validateAmount(amount: number, fieldName: string = 'amount'): void {
     if (typeof amount !== 'number') {
-      throw new ValidationError(
-        `${fieldName} must be a number`,
-        fieldName,
-        amount
-      );
+      throw new ValidationError(`${fieldName} must be a number`, fieldName, amount);
     }
 
     if (amount <= 0) {
-      throw new ValidationError(
-        `${fieldName} must be positive`,
-        fieldName,
-        amount
-      );
+      throw new ValidationError(`${fieldName} must be positive`, fieldName, amount);
     }
 
     if (!Number.isFinite(amount)) {
-      throw new ValidationError(
-        `${fieldName} must be finite`,
-        fieldName,
-        amount
-      );
+      throw new ValidationError(`${fieldName} must be finite`, fieldName, amount);
     }
   }
 
@@ -284,11 +225,7 @@ export class InputValidator {
     }
 
     if (!this.isValidStellarAddress(address)) {
-      throw new ValidationError(
-        `Invalid ${fieldName} format`,
-        fieldName,
-        address
-      );
+      throw new ValidationError(`Invalid ${fieldName} format`, fieldName, address);
     }
   }
 
@@ -301,11 +238,7 @@ export class InputValidator {
     }
 
     if (score < 0 || score > 1000) {
-      throw new ValidationError(
-        'Credit score must be between 0 and 1000',
-        'score',
-        score
-      );
+      throw new ValidationError('Credit score must be between 0 and 1000', 'score', score);
     }
   }
 
@@ -314,13 +247,9 @@ export class InputValidator {
    */
   static validateLoanTerms(terms: any): void {
     this.validateAmount(terms.principal, 'principal');
-    
+
     if (typeof terms.interestRate !== 'number' || terms.interestRate < 0) {
-      throw new ValidationError(
-        'Invalid interest rate',
-        'interestRate',
-        terms.interestRate
-      );
+      throw new ValidationError('Invalid interest rate', 'interestRate', terms.interestRate);
     }
 
     if (typeof terms.duration !== 'number' || terms.duration <= 0) {
@@ -341,11 +270,7 @@ export class InputValidator {
     this.validateAddress(params.asset, 'asset');
 
     if (typeof params.deadline !== 'number' || params.deadline <= Date.now()) {
-      throw new ValidationError(
-        'Deadline must be in the future',
-        'deadline',
-        params.deadline
-      );
+      throw new ValidationError('Deadline must be in the future', 'deadline', params.deadline);
     }
   }
 
@@ -398,10 +323,7 @@ export class InputValidator {
   /**
    * Validate object has required fields
    */
-  static validateRequiredFields(
-    obj: any,
-    requiredFields: string[]
-  ): void {
+  static validateRequiredFields(obj: any, requiredFields: string[]): void {
     for (const field of requiredFields) {
       if (!(field in obj) || obj[field] === undefined || obj[field] === null) {
         throw new ValidationError(`Required field missing: ${field}`, field);

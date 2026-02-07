@@ -1,6 +1,6 @@
 /**
  * Prometheus Metrics Exporter
- * 
+ *
  * Exports application metrics in Prometheus format
  */
 
@@ -67,7 +67,7 @@ export class PrometheusExporter {
     // Export each metric group
     grouped.forEach((metrics, name) => {
       const first = metrics[0];
-      
+
       // Add HELP and TYPE
       lines.push(`# HELP ${name} ${first.help}`);
       lines.push(`# TYPE ${name} ${first.type}`);
@@ -98,9 +98,15 @@ export class PrometheusExporter {
     if (summary.settlementFinality) {
       lines.push('# HELP cygnus_settlement_duration_seconds Settlement finality duration');
       lines.push('# TYPE cygnus_settlement_duration_seconds summary');
-      lines.push(`cygnus_settlement_duration_seconds{quantile="0.5"} ${summary.settlementFinality.p50 / 1000}`);
-      lines.push(`cygnus_settlement_duration_seconds{quantile="0.95"} ${summary.settlementFinality.p95 / 1000}`);
-      lines.push(`cygnus_settlement_duration_seconds{quantile="0.99"} ${summary.settlementFinality.p99 / 1000}`);
+      lines.push(
+        `cygnus_settlement_duration_seconds{quantile="0.5"} ${summary.settlementFinality.p50 / 1000}`
+      );
+      lines.push(
+        `cygnus_settlement_duration_seconds{quantile="0.95"} ${summary.settlementFinality.p95 / 1000}`
+      );
+      lines.push(
+        `cygnus_settlement_duration_seconds{quantile="0.99"} ${summary.settlementFinality.p99 / 1000}`
+      );
       lines.push(`cygnus_settlement_duration_seconds_sum ${summary.settlementFinality.sum / 1000}`);
       lines.push(`cygnus_settlement_duration_seconds_count ${summary.settlementFinality.count}`);
       lines.push('');
@@ -110,9 +116,15 @@ export class PrometheusExporter {
     if (summary.channelLatency) {
       lines.push('# HELP cygnus_channel_latency_milliseconds Payment channel latency');
       lines.push('# TYPE cygnus_channel_latency_milliseconds summary');
-      lines.push(`cygnus_channel_latency_milliseconds{quantile="0.5"} ${summary.channelLatency.p50}`);
-      lines.push(`cygnus_channel_latency_milliseconds{quantile="0.95"} ${summary.channelLatency.p95}`);
-      lines.push(`cygnus_channel_latency_milliseconds{quantile="0.99"} ${summary.channelLatency.p99}`);
+      lines.push(
+        `cygnus_channel_latency_milliseconds{quantile="0.5"} ${summary.channelLatency.p50}`
+      );
+      lines.push(
+        `cygnus_channel_latency_milliseconds{quantile="0.95"} ${summary.channelLatency.p95}`
+      );
+      lines.push(
+        `cygnus_channel_latency_milliseconds{quantile="0.99"} ${summary.channelLatency.p99}`
+      );
       lines.push(`cygnus_channel_latency_milliseconds_sum ${summary.channelLatency.sum}`);
       lines.push(`cygnus_channel_latency_milliseconds_count ${summary.channelLatency.count}`);
       lines.push('');
@@ -123,8 +135,12 @@ export class PrometheusExporter {
       lines.push('# HELP cygnus_agent_decision_milliseconds Agent decision-making time');
       lines.push('# TYPE cygnus_agent_decision_milliseconds summary');
       lines.push(`cygnus_agent_decision_milliseconds{quantile="0.5"} ${summary.agentDecision.p50}`);
-      lines.push(`cygnus_agent_decision_milliseconds{quantile="0.95"} ${summary.agentDecision.p95}`);
-      lines.push(`cygnus_agent_decision_milliseconds{quantile="0.99"} ${summary.agentDecision.p99}`);
+      lines.push(
+        `cygnus_agent_decision_milliseconds{quantile="0.95"} ${summary.agentDecision.p95}`
+      );
+      lines.push(
+        `cygnus_agent_decision_milliseconds{quantile="0.99"} ${summary.agentDecision.p99}`
+      );
       lines.push(`cygnus_agent_decision_milliseconds_sum ${summary.agentDecision.sum}`);
       lines.push(`cygnus_agent_decision_milliseconds_count ${summary.agentDecision.count}`);
       lines.push('');

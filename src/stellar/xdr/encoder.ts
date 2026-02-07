@@ -1,6 +1,6 @@
 /**
  * XDR Encoder
- * 
+ *
  * Encodes Stellar transaction structures to XDR binary format.
  * XDR (External Data Representation) is defined by RFC 4506.
  */
@@ -22,10 +22,7 @@ import {
 export function encodeTransactionEnvelope(envelope: TransactionEnvelope): string {
   try {
     // Build transaction using Stellar SDK
-    const account = new StellarSdk.Account(
-      envelope.tx.sourceAccount,
-      envelope.tx.seqNum
-    );
+    const account = new StellarSdk.Account(envelope.tx.sourceAccount, envelope.tx.seqNum);
 
     const txBuilder = new StellarSdk.TransactionBuilder(account, {
       fee: envelope.tx.fee.toString(),
@@ -55,10 +52,7 @@ export function encodeTransactionEnvelope(envelope: TransactionEnvelope): string
 
     // Add signatures
     for (const sig of envelope.signatures) {
-      tx.addSignature(
-        sig.hint.toString('hex'),
-        sig.signature.toString('base64')
-      );
+      tx.addSignature(sig.hint.toString('hex'), sig.signature.toString('base64'));
     }
 
     // Return XDR string
@@ -81,9 +75,7 @@ export function encodeTransaction(tx: Transaction): string {
     });
 
     if (tx.timeBounds) {
-      txBuilder.setTimeout(
-        parseInt(tx.timeBounds.maxTime) - parseInt(tx.timeBounds.minTime)
-      );
+      txBuilder.setTimeout(parseInt(tx.timeBounds.maxTime) - parseInt(tx.timeBounds.minTime));
     }
 
     const memo = encodeMemo(tx.memo);
@@ -129,9 +121,9 @@ function encodeMemo(memo: Memo): StellarSdk.Memo | null {
 function encodeOperation(op: Operation): StellarSdk.Operation {
   // For now, we'll support payment operations as a starting point
   // Additional operation types can be added as needed
-  
+
   const opData = op.body.data;
-  
+
   switch (op.body.type) {
     case 1: // PAYMENT
       return StellarSdk.Operation.payment({
@@ -140,7 +132,7 @@ function encodeOperation(op: Operation): StellarSdk.Operation {
         amount: opData.amount,
         source: op.sourceAccount,
       });
-    
+
     default:
       throw new Error(`Unsupported operation type: ${op.body.type}`);
   }
@@ -153,14 +145,14 @@ function encodeAsset(asset: Asset): StellarSdk.Asset {
   switch (asset.type) {
     case AssetType.ASSET_TYPE_NATIVE:
       return StellarSdk.Asset.native();
-    
+
     case AssetType.ASSET_TYPE_CREDIT_ALPHANUM4:
     case AssetType.ASSET_TYPE_CREDIT_ALPHANUM12:
       if (!asset.code || !asset.issuer) {
         throw new Error('Asset code and issuer required for credit assets');
       }
       return new StellarSdk.Asset(asset.code, asset.issuer);
-    
+
     default:
       throw new Error(`Unsupported asset type: ${asset.type}`);
   }
@@ -173,16 +165,16 @@ export function encodeToXDR(data: any, type: string): string {
   try {
     // Use Stellar SDK's XDR encoding capabilities
     const xdr = StellarSdk.xdr;
-    
+
     // This is a simplified implementation
     // In production, you'd need to handle all XDR types
     switch (type) {
       case 'TransactionEnvelope':
         return data.toXDR('base64');
-      
+
       case 'Transaction':
         return data.toXDR('base64');
-      
+
       default:
         throw new Error(`Unsupported XDR type: ${type}`);
     }
@@ -209,10 +201,7 @@ export function validateXDR(xdrString: string): boolean {
  */
 export function getTransactionHash(xdrString: string, networkPassphrase: string): Buffer {
   try {
-    const tx = StellarSdk.TransactionBuilder.fromXDR(
-      xdrString,
-      networkPassphrase
-    );
+    const tx = StellarSdk.TransactionBuilder.fromXDR(xdrString, networkPassphrase);
     return tx.hash();
   } catch (error) {
     throw new Error(`Failed to get transaction hash: ${error}`);
