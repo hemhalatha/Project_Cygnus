@@ -1,33 +1,61 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getPublicKey, isConnected, requestAccess } from "@stellar/freighter-api";
 import { getHealth, postNativePayment } from "../api";
+
+declare global {
+  interface Window {
+    freighterApi?: {
+      isConnected: () => Promise<boolean>;
+      getPublicKey: () => Promise<string>;
+      requestAccess: () => Promise<string>;
+    };
+  }
+}
+
+function getFreighter() {
+  return typeof window !== "undefined" ? window.freighterApi : undefined;
+}
 
 export default function Home() {
   const [pubKey, setPubKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [apiOk, setApiOk] = useState<boolean | null>(null);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
+  const [checking, setChecking] = useState(true);
 
   const checkFreighter = useCallback(async () => {
+    const api = getFreighter();
+    if (!api) {
+      setError("Freighter not detected. Install the Freighter wallet extension and refresh the page.");
+      setPubKey(null);
+      setChecking(false);
+      return;
+    }
     try {
-      const connected = await isConnected();
+      const connected = await api.isConnected();
       if (connected) {
-        const key = await getPublicKey();
+        const key = await api.getPublicKey();
         setPubKey(key ?? null);
         setError(null);
       } else {
         setPubKey(null);
       }
     } catch (e) {
-      setError("Freighter not detected. Install the Freighter wallet extension.");
+      setError("Freighter not detected. Install the Freighter wallet extension and refresh the page.");
       setPubKey(null);
     }
+    setChecking(false);
   }, []);
 
   const connectFreighter = useCallback(async () => {
+    setError(null);
+    const api = getFreighter();
+    if (!api) {
+      setError("Freighter not detected. Install the extension and refresh the page.");
+      return;
+    }
     try {
-      const key = await requestAccess();
+      const key = await api.requestAccess();
       setPubKey(key ?? null);
       setError(null);
     } catch (e) {
@@ -36,7 +64,27 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    checkFreighter();
+    setChecking(true);
+    const api = getFreighter();
+    if (api) {
+      checkFreighter();
+    } else {
+      const retries = [300, 800];
+      let i = 0;
+      const tryCheck = () => {
+        if (getFreighter()) {
+          checkFreighter();
+          return;
+        }
+        if (i < retries.length) {
+          setTimeout(tryCheck, retries[i++]);
+        } else {
+          setError("Freighter not detected. Install the Freighter wallet extension and refresh the page.");
+          setChecking(false);
+        }
+      };
+      tryCheck();
+    }
     getHealth()
       .then(() => setApiOk(true))
       .catch(() => setApiOk(false));
@@ -72,7 +120,9 @@ export default function Home() {
 
       <div className="card" style={{ marginBottom: "1.5rem" }}>
         <h2 style={{ marginBottom: "0.75rem" }}>Freighter Wallet</h2>
-        {!pubKey ? (
+        {checking ? (
+          <p style={{ color: "#94a3b8" }}>Checking for Freighter…</p>
+        ) : !pubKey ? (
           <button onClick={connectFreighter}>Connect Freighter</button>
         ) : (
           <div>
@@ -90,7 +140,7 @@ export default function Home() {
             )}
           </div>
         )}
-        {error && <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{error}</p>}
+        {!checking && error && <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{error}</p>}
       </div>
 
       <div className="card" style={{ marginBottom: "1.5rem" }}>
