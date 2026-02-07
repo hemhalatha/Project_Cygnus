@@ -1,0 +1,103 @@
+groups:
+  - name: cygnus_agent_alerts
+    interval: 30s
+    rules:
+      # High error rate
+      - alert: HighErrorRate
+        expr: rate(cygnus_errors_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High error rate detected"
+          description: "Error rate is {{ $value }} errors/sec for {{ $labels.instance }}"
+
+      # Critical error rate
+      - alert: CriticalErrorRate
+        expr: rate(cygnus_errors_total{severity="critical"}[5m]) > 0.01
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Critical errors detected"
+          description: "Critical error rate is {{ $value }} errors/sec for {{ $labels.instance }}"
+
+      # High settlement latency
+      - alert: HighSettlementLatency
+        expr: histogram_quantile(0.95, rate(cygnus_settlement_duration_seconds_bucket[5m])) > 5
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High settlement latency"
+          description: "P95 settlement latency is {{ $value }}s for {{ $labels.instance }}"
+
+      # High channel latency
+      - alert: HighChannelLatency
+        expr: histogram_quantile(0.95, rate(cygnus_channel_latency_milliseconds_bucket[5m])) > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High payment channel latency"
+          description: "P95 channel latency is {{ $value }}ms for {{ $labels.instance }}"
+
+      # Circuit breaker open
+      - alert: CircuitBreakerOpen
+        expr: cygnus_circuit_breaker_state{state="open"} == 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Circuit breaker is open"
+          description: "Circuit breaker {{ $labels.service }} is open for {{ $labels.instance }}"
+
+      # High memory usage
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage"
+          description: "Memory usage is {{ $value | humanizePercentage }} for {{ $labels.instance }}"
+
+      # High CPU usage
+      - alert: HighCPUUsage
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage"
+          description: "CPU usage is {{ $value }}% for {{ $labels.instance }}"
+
+      # Agent down
+      - alert: AgentDown
+        expr: up{job="cygnus-agent"} == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Cygnus agent is down"
+          description: "Agent {{ $labels.instance }} has been down for more than 2 minutes"
+
+      # Rate limit exceeded
+      - alert: RateLimitExceeded
+        expr: rate(cygnus_rate_limit_exceeded_total[5m]) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Rate limit frequently exceeded"
+          description: "Rate limit exceeded {{ $value }} times/sec for {{ $labels.instance }}"
+
+      # Low credit score
+      - alert: LowAverageCreditScore
+        expr: avg(cygnus_credit_score) < 400
+        for: 30m
+        labels:
+          severity: info
+        annotations:
+          summary: "Low average credit score"
+          description: "Average credit score is {{ $value }} for {{ $labels.instance }}"

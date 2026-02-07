@@ -1,0 +1,44 @@
+# Node
+node_modules
+npm-debug.log
+dist
+*.log
+
+# Rust
+target
+Cargo.lock
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Documentation
+*.md
+!README.md
+
+# Tests
+tests
+coverage
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

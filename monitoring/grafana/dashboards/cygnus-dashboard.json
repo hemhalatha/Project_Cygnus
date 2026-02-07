@@ -1,0 +1,173 @@
+{
+  "dashboard": {
+    "title": "Project Cygnus - Agent Monitoring",
+    "tags": ["cygnus", "agent", "stellar"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Settlement Finality (P95)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(cygnus_settlement_duration_seconds_bucket[5m]))",
+            "legendFormat": "P95 Settlement Time"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "s",
+            "label": "Duration"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Payment Channel Latency (P95)",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "histogram_quantile(0.95, rate(cygnus_channel_latency_milliseconds_bucket[5m]))",
+            "legendFormat": "P95 Channel Latency"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "ms",
+            "label": "Latency"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Error Rate",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(cygnus_errors_total[5m])",
+            "legendFormat": "{{severity}}"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "ops",
+            "label": "Errors/sec"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Circuit Breaker Status",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "cygnus_circuit_breaker_state",
+            "legendFormat": "{{service}}"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Transaction Throughput",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(cygnus_transactions_total[5m])",
+            "legendFormat": "{{type}}"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "ops",
+            "label": "Transactions/sec"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Average Credit Score",
+        "type": "gauge",
+        "targets": [
+          {
+            "expr": "avg(cygnus_credit_score)",
+            "legendFormat": "Average Score"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "min": 0,
+            "max": 1000,
+            "thresholds": {
+              "steps": [
+                {"value": 0, "color": "red"},
+                {"value": 400, "color": "yellow"},
+                {"value": 700, "color": "green"}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 7,
+        "title": "Active Loans",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "cygnus_active_loans",
+            "legendFormat": "Active Loans"
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Active Escrows",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "cygnus_active_escrows",
+            "legendFormat": "Active Escrows"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "process_resident_memory_bytes",
+            "legendFormat": "Memory"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "bytes",
+            "label": "Memory"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "CPU Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "rate(process_cpu_seconds_total[5m]) * 100",
+            "legendFormat": "CPU %"
+          }
+        ],
+        "yaxes": [
+          {
+            "format": "percent",
+            "label": "CPU"
+          }
+        ]
+      }
+    ],
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    }
+  }
+}
