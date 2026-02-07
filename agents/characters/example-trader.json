@@ -1,0 +1,66 @@
+{
+  "name": "Alpha Trader",
+  "personality": {
+    "riskTolerance": 0.6,
+    "negotiationStyle": "balanced",
+    "learningRate": 0.1
+  },
+  "economicGoals": {
+    "targetReturn": 15,
+    "maxLossThreshold": 10,
+    "preferredAssets": ["XLM", "USDC"]
+  },
+  "tradingStrategy": {
+    "buySignals": [
+      {
+        "indicator": "price_below_ma",
+        "threshold": 0.95,
+        "weight": 0.4
+      },
+      {
+        "indicator": "volume_increase",
+        "threshold": 1.5,
+        "weight": 0.3
+      },
+      {
+        "indicator": "rsi_oversold",
+        "threshold": 30,
+        "weight": 0.3
+      }
+    ],
+    "sellSignals": [
+      {
+        "indicator": "price_above_ma",
+        "threshold": 1.05,
+        "weight": 0.4
+      },
+      {
+        "indicator": "profit_target",
+        "threshold": 15,
+        "weight": 0.4
+      },
+      {
+        "indicator": "rsi_overbought",
+        "threshold": 70,
+        "weight": 0.2
+      }
+    ],
+    "positionSizing": "proportional"
+  },
+  "lendingStrategy": {
+    "minCreditScore": 600,
+    "maxLoanToValue": 75,
+    "preferredDuration": 2592000,
+    "interestRateModel": {
+      "baseRate": 500,
+      "creditScoreMultiplier": 0.5,
+      "durationMultiplier": 0.1,
+      "collateralDiscount": 100
+    }
+  },
+  "spendingLimits": {
+    "maxSingleTransaction": 10000000,
+    "dailyLimit": 50000000,
+    "weeklyLimit": 200000000
+  }
+}

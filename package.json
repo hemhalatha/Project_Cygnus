@@ -1,0 +1,53 @@
+{
+  "name": "project-cygnus",
+  "version": "0.1.0",
+  "description": "Machine Economy Stack on Stellar blockchain - Autonomous agentic ecosystem for machine-to-machine commerce",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:property": "vitest run --grep 'Property'",
+    "test:integration": "vitest run tests/integration",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write 'src/**/*.ts'",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "stellar",
+    "blockchain",
+    "soroban",
+    "ai-agents",
+    "machine-economy",
+    "autonomous-agents",
+    "x402",
+    "payment-channels",
+    "decentralized-identity"
+  ],
+  "author": "Project Cygnus Team",
+  "license": "MIT",
+  "dependencies": {
+    "@stellar/stellar-sdk": "^12.0.0",
+    "stellar-sdk": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^8.0.0",
+    "fast-check": "^3.15.0",
+    "prettier": "^3.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
