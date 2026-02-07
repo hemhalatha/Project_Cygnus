@@ -1,0 +1,75 @@
+.contract-status {
+  min-height: 300px;
+}
+
+.contract-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contract-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.contract-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contract-info {
+  flex: 1;
+}
+
+.contract-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.contract-address {
+  font-size: 12px;
+  color: #666;
+  font-family: 'Courier New', monospace;
+}
+
+.contract-stats {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contract-calls {
+  font-size: 14px;
+  color: #888;
+}
+
+.contract-status-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contract-status-badge.deployed {
+  background: rgba(39, 174, 96, 0.2);
+  color: var(--success);
+}
+
+.contract-status-badge.pending {
+  background: rgba(243, 156, 18, 0.2);
+  color: var(--warning);
+}
+
+.contract-status-badge.failed {
+  background: rgba(231, 76, 60, 0.2);
+  color: var(--danger);
+}
