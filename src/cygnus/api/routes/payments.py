@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 from cygnus.core.agent import (
     agent_create_claimable_balance,
     agent_native_payment,
+    agent_native_payment_with_steps,
     agent_time_bound_payment,
 )
 
@@ -40,6 +41,19 @@ class TimeBoundPaymentRequest(BaseModel):
 async def post_native_payment(body: NativePaymentRequest) -> dict:
     """Submit a native XLM payment via the agent."""
     result = agent_native_payment(
+        destination_public=body.destination_public,
+        amount_xlm=body.amount_xlm,
+        memo=body.memo,
+    )
+    if not result.get("success"):
+        raise HTTPException(status_code=400, detail=result)
+    return result
+
+
+@router.post("/native/with-steps")
+async def post_native_payment_with_steps(body: NativePaymentRequest) -> dict:
+    """Submit a native XLM payment via the agent and return step-by-step log."""
+    result = agent_native_payment_with_steps(
         destination_public=body.destination_public,
         amount_xlm=body.amount_xlm,
         memo=body.memo,

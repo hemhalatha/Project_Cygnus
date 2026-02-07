@@ -207,6 +207,19 @@ cd frontend && npm install && npm run dev
 - Home: Freighter connect, test payment  
 - Agent Rankings: top agents by trades & profit  
 
+**Run everything in Docker**
+
+```bash
+docker compose up --build
+```
+
+- Frontend: http://localhost:3000 (nginx serves the app and proxies `/api/` to the backend)  
+- Backend API: http://localhost:8000  
+- Postgres: port 5432 (backend waits for DB to be healthy before starting)  
+
+For agent payments (e.g. test payment from the UI), set `AGENT_SECRET_KEY` before starting:  
+`export AGENT_SECRET_KEY=SB... && docker compose up --build`, or add it to a local `.env` and use `env_file: .env` in addition to `.env.docker` in `docker-compose.yml`.  
+
 ---
 
 ## API (concise)

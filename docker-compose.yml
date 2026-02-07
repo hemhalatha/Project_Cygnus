@@ -1,0 +1,63 @@
+# Run full stack: backend (FastAPI), frontend (nginx), Postgres.
+# Usage: docker compose up --build
+# Optional: create .env from .env.example and set AGENT_SECRET_KEY for agent payments.
+# Frontend: http://localhost:3000  |  Backend API: http://localhost:8000
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.docker
+    environment:
+      - DATABASE_URL=postgresql://cygnus:cygnus@db:5432/cygnus
+      - STELLAR_NETWORK=${STELLAR_NETWORK:-testnet}
+      - HORIZON_URL=${HORIZON_URL:-https://horizon-testnet.stellar.org}
+      - SOROBAN_RPC_URL=${SOROBAN_RPC_URL:-https://soroban-testnet.stellar.org}
+      - API_SECRET_KEY=${API_SECRET_KEY:-dev-secret-key}
+      - AGENT_SECRET_KEY=${AGENT_SECRET_KEY}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')\""]
+      interval: 10s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=cygnus
+      - POSTGRES_PASSWORD=cygnus
+      - POSTGRES_DB=cygnus
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cygnus -d cygnus"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

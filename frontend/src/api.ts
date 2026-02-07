@@ -37,3 +37,36 @@ export async function postNativePayment(body: NativePaymentRequest): Promise<unk
   if (!r.ok) throw new Error((data as { detail?: string }).detail || "Payment failed");
   return data;
 }
+
+export interface PaymentStep {
+  id: string;
+  label: string;
+  status: "pending" | "running" | "done" | "error";
+  detail?: string;
+}
+
+export interface NativePaymentWithStepsResponse {
+  success: boolean;
+  steps: PaymentStep[];
+  result?: { hash?: string };
+  error?: string;
+  message?: string;
+}
+
+export async function postNativePaymentWithSteps(
+  body: NativePaymentRequest
+): Promise<NativePaymentWithStepsResponse> {
+  const r = await fetch(`${API_BASE}/api/v1/payments/native/with-steps`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const raw = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    const detail = (raw.detail ?? raw) as NativePaymentWithStepsResponse;
+    const err = new Error(detail?.message ?? "Payment failed") as Error & { response?: NativePaymentWithStepsResponse };
+    err.response = { ...detail, steps: detail?.steps ?? [] };
+    throw err;
+  }
+  return raw as NativePaymentWithStepsResponse;
+}

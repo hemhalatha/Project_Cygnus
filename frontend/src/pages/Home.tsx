@@ -1,19 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getHealth, postNativePayment } from "../api";
+import FreighterAPI from "@stellar/freighter-api";
+import { getHealth, postNativePayment, postNativePaymentWithSteps, type PaymentStep } from "../api";
 
-declare global {
-  interface Window {
-    freighterApi?: {
-      isConnected: () => Promise<boolean>;
-      getPublicKey: () => Promise<string>;
-      requestAccess: () => Promise<string>;
-    };
-  }
-}
-
-function getFreighter() {
-  return typeof window !== "undefined" ? window.freighterApi : undefined;
+function getFreighter(): typeof FreighterAPI | undefined {
+  if (typeof window === "undefined") return undefined;
+  return (window as unknown as { freighterApi?: typeof FreighterAPI }).freighterApi ?? FreighterAPI;
 }
 
 export default function Home() {
@@ -22,6 +14,12 @@ export default function Home() {
   const [apiOk, setApiOk] = useState<boolean | null>(null);
   const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
   const [checking, setChecking] = useState(true);
+  const [testDestination, setTestDestination] = useState("");
+  const [testAmount, setTestAmount] = useState("10");
+  const [testMemo, setTestMemo] = useState("");
+  const [steps, setSteps] = useState<PaymentStep[]>([]);
+  const [stepError, setStepError] = useState<string | null>(null);
+  const [stepsRunning, setStepsRunning] = useState(false);
 
   const checkFreighter = useCallback(async () => {
     const api = getFreighter();
@@ -32,10 +30,12 @@ export default function Home() {
       return;
     }
     try {
-      const connected = await api.isConnected();
+      const conn = await api.isConnected();
+      const connected = conn?.isConnected === true && !conn?.error;
       if (connected) {
-        const key = await api.getPublicKey();
-        setPubKey(key ?? null);
+        const addr = await api.getAddress();
+        const key = addr?.error ? null : addr?.address ?? null;
+        setPubKey(key);
         setError(null);
       } else {
         setPubKey(null);
@@ -55,9 +55,14 @@ export default function Home() {
       return;
     }
     try {
-      const key = await api.requestAccess();
-      setPubKey(key ?? null);
-      setError(null);
+      const result = await api.requestAccess();
+      const key = result?.error ? null : result?.address ?? null;
+      setPubKey(key);
+      if (result?.error) {
+        setError(result.error.message ?? "Connection denied or failed");
+      } else {
+        setError(null);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Connection denied or failed");
     }
@@ -65,26 +70,22 @@ export default function Home() {
 
   useEffect(() => {
     setChecking(true);
-    const api = getFreighter();
-    if (api) {
-      checkFreighter();
-    } else {
-      const retries = [300, 800];
-      let i = 0;
-      const tryCheck = () => {
-        if (getFreighter()) {
-          checkFreighter();
-          return;
-        }
-        if (i < retries.length) {
-          setTimeout(tryCheck, retries[i++]);
-        } else {
-          setError("Freighter not detected. Install the Freighter wallet extension and refresh the page.");
-          setChecking(false);
-        }
-      };
-      tryCheck();
-    }
+    const retryDelays = [0, 300, 800, 1500, 3000];
+    let attempt = 0;
+    const tryCheck = () => {
+      const api = getFreighter();
+      if (api) {
+        checkFreighter();
+        return;
+      }
+      if (attempt < retryDelays.length) {
+        setTimeout(tryCheck, retryDelays[attempt++]);
+      } else {
+        setError("Freighter not detected. Install the Freighter wallet extension and refresh the page.");
+        setChecking(false);
+      }
+    };
+    tryCheck();
     getHealth()
       .then(() => setApiOk(true))
       .catch(() => setApiOk(false));
@@ -102,6 +103,40 @@ export default function Home() {
       setPaymentStatus("Success! (Check with backend agent key configured)");
     } catch (e) {
       setPaymentStatus(e instanceof Error ? e.message : "Payment failed");
+    }
+  };
+
+  const handleRunAgentTest = async () => {
+    const dest = testDestination.trim();
+    const amount = testAmount.trim();
+    if (!dest || !amount) {
+      setStepError("Enter destination address and amount.");
+      return;
+    }
+    if (dest.length !== 56) {
+      setStepError("Destination must be a 56-character Stellar public key (G...).");
+      return;
+    }
+    setStepError(null);
+    setSteps([]);
+    setStepsRunning(true);
+    try {
+      const res = await postNativePaymentWithSteps({
+        destination_public: dest,
+        amount_xlm: amount,
+        memo: testMemo.trim() || undefined,
+      });
+      setSteps(res.steps ?? []);
+      if (!res.success) {
+        setStepError(res.message ?? "Payment failed");
+      }
+    } catch (e) {
+      const err = e as Error & { response?: { steps?: PaymentStep[] } };
+      setStepError(err.message ?? "Request failed");
+      if (err.response?.steps?.length) setSteps(err.response.steps);
+      else setSteps([]);
+    } finally {
+      setStepsRunning(false);
     }
   };
 
@@ -141,6 +176,115 @@ export default function Home() {
           </div>
         )}
         {!checking && error && <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{error}</p>}
+      </div>
+
+      <div className="card" style={{ marginBottom: "1.5rem" }}>
+        <h2 style={{ marginBottom: "0.75rem" }}>Test agent payment</h2>
+        <p style={{ color: "#94a3b8", marginBottom: "1rem" }}>
+          Send a specific amount (XLM) from the agent to any testnet address and see each step.
+        </p>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1rem" }}>
+          <label style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <span style={{ color: "#94a3b8", fontSize: "0.875rem" }}>Destination wallet (G...)</span>
+            <input
+              type="text"
+              placeholder="GXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+              value={testDestination}
+              onChange={(e) => setTestDestination(e.target.value)}
+              disabled={stepsRunning}
+              style={{
+                padding: "0.5rem 0.75rem",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "6px",
+                color: "#f1f5f9",
+                fontFamily: "monospace",
+              }}
+            />
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <span style={{ color: "#94a3b8", fontSize: "0.875rem" }}>Amount (XLM)</span>
+            <input
+              type="text"
+              placeholder="10"
+              value={testAmount}
+              onChange={(e) => setTestAmount(e.target.value)}
+              disabled={stepsRunning}
+              style={{
+                padding: "0.5rem 0.75rem",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "6px",
+                color: "#f1f5f9",
+                width: "6rem",
+              }}
+            />
+          </label>
+          <label style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+            <span style={{ color: "#94a3b8", fontSize: "0.875rem" }}>Memo (optional)</span>
+            <input
+              type="text"
+              placeholder="Cygnus test"
+              value={testMemo}
+              onChange={(e) => setTestMemo(e.target.value)}
+              disabled={stepsRunning}
+              style={{
+                padding: "0.5rem 0.75rem",
+                background: "#1e293b",
+                border: "1px solid #334155",
+                borderRadius: "6px",
+                color: "#f1f5f9",
+              }}
+            />
+          </label>
+        </div>
+        <button
+          onClick={handleRunAgentTest}
+          disabled={!apiOk || stepsRunning}
+          style={{ marginBottom: steps.length > 0 ? "1rem" : 0 }}
+        >
+          {stepsRunning ? "Running…" : "Run and show steps"}
+        </button>
+        {stepError && (
+          <p style={{ marginTop: "0.75rem", color: "#f87171" }}>{stepError}</p>
+        )}
+        {steps.length > 0 && (
+          <div style={{ marginTop: "1rem", paddingTop: "1rem", borderTop: "1px solid #334155" }}>
+            <h3 style={{ marginBottom: "0.75rem", fontSize: "1rem" }}>Steps</h3>
+            <ol style={{ listStyle: "none", paddingLeft: 0, margin: 0 }}>
+              {steps.map((s, i) => (
+                <li
+                  key={s.id + i}
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    gap: "0.5rem",
+                    marginBottom: "0.5rem",
+                    padding: "0.5rem 0.75rem",
+                    background: s.status === "error" ? "rgba(248,113,113,0.1)" : s.status === "done" ? "rgba(34,197,94,0.08)" : "rgba(148,163,184,0.06)",
+                    borderRadius: "6px",
+                    borderLeft: `3px solid ${
+                      s.status === "error" ? "#f87171" : s.status === "done" ? "#22c55e" : "#64748b"
+                    }`,
+                  }}
+                >
+                  <span style={{ color: "#64748b", minWidth: "1.5rem" }}>{i + 1}.</span>
+                  <div>
+                    <strong>{s.label}</strong>
+                    {s.status === "running" && " …"}
+                    {s.status === "done" && " ✓"}
+                    {s.status === "error" && " ✗"}
+                    {s.detail && (
+                      <p style={{ margin: "0.25rem 0 0", color: "#94a3b8", fontSize: "0.875rem" }}>
+                        {s.detail}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
 
       <div className="card" style={{ marginBottom: "1.5rem" }}>

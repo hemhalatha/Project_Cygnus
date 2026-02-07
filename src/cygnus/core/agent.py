@@ -3,7 +3,7 @@
 from cygnus.config import get_settings
 from cygnus.core.payments.claimable import create_claimable_balance
 from cygnus.core.payments.time_bound import build_time_bound_payment
-from cygnus.core.stellar.payments import submit_native_payment
+from cygnus.core.stellar.payments import submit_native_payment, submit_native_payment_with_steps
 
 
 def get_agent_secret() -> str | None:
@@ -26,6 +26,37 @@ def agent_native_payment(
         return {"success": True, "result": result}
     except Exception as e:
         return {"success": False, "error": type(e).__name__, "message": str(e)}
+
+
+def agent_native_payment_with_steps(
+    destination_public: str,
+    amount_xlm: str,
+    memo: str | None = None,
+    source_secret: str | None = None,
+) -> dict:
+    """Agent submits a native XLM payment and returns step-by-step log for UI."""
+    secret = source_secret or get_agent_secret()
+    if not secret:
+        return {
+            "success": False,
+            "error": "no_agent_secret",
+            "message": "AGENT_SECRET_KEY not set",
+            "steps": [
+                {"id": "config", "label": "Agent config", "status": "error", "detail": "AGENT_SECRET_KEY not set"},
+            ],
+        }
+    steps, result = submit_native_payment_with_steps(
+        secret, destination_public, amount_xlm, memo=memo
+    )
+    if result is not None:
+        return {"success": True, "steps": steps, "result": result}
+    last_detail = steps[-1].get("detail", "") if steps else ""
+    return {
+        "success": False,
+        "error": "payment_failed",
+        "message": last_detail,
+        "steps": steps,
+    }
 
 
 def agent_create_claimable_balance(
