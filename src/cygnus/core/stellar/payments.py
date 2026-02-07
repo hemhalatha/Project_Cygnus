@@ -61,17 +61,14 @@ def submit_native_payment_with_steps(
                 f"Pay {amount_xlm} XLM to {destination_public[:8]}...",
             )
         )
-        builder = (
-            TransactionBuilder(
-                source_account=source_account,
-                network_passphrase=network_passphrase,
-                base_fee=base_fee,
-            )
-            .append_payment_op(
-                destination=destination_public,
-                asset=Asset.native(),
-                amount=amount_xlm,
-            )
+        builder = TransactionBuilder(
+            source_account=source_account,
+            network_passphrase=network_passphrase,
+            base_fee=base_fee,
+        ).append_payment_op(
+            destination=destination_public,
+            asset=Asset.native(),
+            amount=amount_xlm,
         )
         if memo:
             builder.add_text_memo(memo)
@@ -86,7 +83,9 @@ def submit_native_payment_with_steps(
 
         steps.append(_step("submit", "Submit to network", "running"))
         result = client.submit_transaction(transaction)
-        tx_hash = result.get("hash") if isinstance(result, dict) else getattr(result, "hash", None) or "—"
+        tx_hash = (
+            result.get("hash") if isinstance(result, dict) else getattr(result, "hash", None) or "—"
+        )
         steps[-1]["status"] = "done"
         steps[-1]["detail"] = f"Success. Hash: {tx_hash}"
         return steps, result
@@ -120,17 +119,14 @@ def build_unsigned_payment_xdr(
     server = client.server
     source_account = server.load_account(source_public_key)
     base_fee = server.fetch_base_fee()
-    builder = (
-        TransactionBuilder(
-            source_account=source_account,
-            network_passphrase=network_passphrase,
-            base_fee=base_fee,
-        )
-        .append_payment_op(
-            destination=destination_public_key,
-            asset=Asset.native(),
-            amount=amount_xlm,
-        )
+    builder = TransactionBuilder(
+        source_account=source_account,
+        network_passphrase=network_passphrase,
+        base_fee=base_fee,
+    ).append_payment_op(
+        destination=destination_public_key,
+        asset=Asset.native(),
+        amount=amount_xlm,
     )
     if memo:
         builder.add_text_memo(memo)

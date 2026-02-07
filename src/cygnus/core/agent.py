@@ -124,7 +124,12 @@ def agent_native_payment_with_steps(
             "error": "no_agent_secret",
             "message": "AGENT_SECRET_KEY not set",
             "steps": [
-                {"id": "config", "label": "Agent config", "status": "error", "detail": "AGENT_SECRET_KEY not set"},
+                {
+                    "id": "config",
+                    "label": "Agent config",
+                    "status": "error",
+                    "detail": "AGENT_SECRET_KEY not set",
+                },
             ],
         }
     steps, result = submit_native_payment_with_steps(

@@ -21,15 +21,21 @@ class AgentTransactionModel(Base):
     __tablename__ = "agent_transactions"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
-    kind: Mapped[str] = mapped_column(String(32), nullable=False, index=True)  # native, claimable, time_bound
+    kind: Mapped[str] = mapped_column(
+        String(32), nullable=False, index=True
+    )  # native, claimable, time_bound
     source_public_key: Mapped[str] = mapped_column(String(56), nullable=False, index=True)  # agent
-    recipient_public_key: Mapped[str] = mapped_column(String(56), nullable=False, index=True)  # destination or claimant
+    recipient_public_key: Mapped[str] = mapped_column(
+        String(56), nullable=False, index=True
+    )  # destination or claimant
     amount: Mapped[str] = mapped_column(String(32), nullable=False)
     memo: Mapped[str | None] = mapped_column(Text, nullable=True)
     transaction_hash: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)
     status: Mapped[str] = mapped_column(String(16), nullable=False, index=True)  # success, failed
     error_message: Mapped[str | None] = mapped_column(Text, nullable=True)
-    result_payload: Mapped[dict | None] = mapped_column(JSON, nullable=True)  # full Horizon response or error detail
+    result_payload: Mapped[dict | None] = mapped_column(
+        JSON, nullable=True
+    )  # full Horizon response or error detail
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
 
 

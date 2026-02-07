@@ -72,7 +72,9 @@ async def get_agent_address() -> dict:
     """Return the agent's public key (G...) for funding. 404 if AGENT_SECRET_KEY not set."""
     public_key = get_agent_public_key()
     if not public_key:
-        raise HTTPException(status_code=404, detail="Agent not configured (AGENT_SECRET_KEY not set)")
+        raise HTTPException(
+            status_code=404, detail="Agent not configured (AGENT_SECRET_KEY not set)"
+        )
     return {"public_key": public_key}
 
 
