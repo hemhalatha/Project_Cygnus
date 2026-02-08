@@ -6,7 +6,7 @@
 //! It calculates credit scores based on transaction history, payment timeliness,
 //! and default records, then determines transaction limits accordingly.
 
-use soroban_sdk::{contract, contractimpl, contracttype, Address, Env, String, Vec};
+use soroban_sdk::{contract, contractimpl, contracttype, Env, String};
 
 /// Credit profile for an agent
 #[contracttype]
@@ -241,12 +241,13 @@ impl CreditScoringContract {
         }
 
         // Payment History Score (35% weight) - 0 to 350 points
+        // Using fixed-point arithmetic: multiply by 1000 to avoid floating point
         let success_rate = if profile.total_transactions > 0 {
-            (profile.successful_transactions as f64) / (profile.total_transactions as f64)
+            (profile.successful_transactions * 1000) / profile.total_transactions
         } else {
-            0.5
+            500 // 0.5 in fixed-point (500/1000)
         };
-        let payment_history_score = (success_rate * 350.0) as u32;
+        let payment_history_score = ((success_rate * 350) / 1000) as u32;
 
         // Default penalty - subtract 100 points per default
         let default_penalty = (profile.defaults as u32) * 100;

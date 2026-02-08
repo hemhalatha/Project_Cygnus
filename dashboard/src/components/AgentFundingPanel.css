@@ -1,0 +1,150 @@
+/* AgentFundingPanel Styles */
+
+.agent-funding-panel {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 500px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.agent-funding-panel h3 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Balance Section */
+.balance-section {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.balance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.balance-item:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 8px;
+}
+
+.balance-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.balance-value {
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Funding Form */
+.funding-form {
+  margin-bottom: 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.form-group input.input-error {
+  border-color: #e74c3c;
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.validation-error {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #e74c3c;
+}
+
+/* Fund Button */
+.fund-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fund-button:hover:not(:disabled) {
+  background: #357abd;
+}
+
+.fund-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Error Message */
+.error-message {
+  padding: 12px;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 6px;
+  color: #c33;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .agent-funding-panel {
+    padding: 16px;
+  }
+
+  .balance-section {
+    padding: 12px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .fund-button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}

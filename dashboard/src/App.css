@@ -123,3 +123,68 @@ button.success:hover {
     padding: 10px;
   }
 }
+
+/* Wallet Section */
+.wallet-section {
+  padding: 1rem;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Main Navigation */
+.main-nav {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-nav button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.main-nav button:hover {
+  background: #f5f5f5;
+}
+
+.main-nav button.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Views */
+.agents-view,
+.loans-view {
+  padding: 2rem;
+}
+
+.agent-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.agent-detail > button {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.agent-detail > button:hover {
+  background: #f5f5f5;
+}
+
+.agent-list {
+  padding: 2rem;
+  text-align: center;
+  color: #666;
+}

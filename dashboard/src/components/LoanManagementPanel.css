@@ -1,0 +1,393 @@
+/* LoanManagementPanel Styles */
+
+.loan-management-panel {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.loan-management-panel h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.loan-management-panel h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+}
+
+/* Loading and Error States */
+.loading-message {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.error-message {
+  padding: 12px;
+  background: #fee;
+  border: 1px solid #fcc;
+  border-radius: 6px;
+  color: #c33;
+  font-size: 14px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retry-button {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #e74c3c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.retry-button:hover {
+  background: #c0392b;
+}
+
+/* Create Loan Button */
+.create-loan-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #4a90e2;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.create-loan-button:hover {
+  background: #357abd;
+}
+
+/* Create Loan Form */
+.create-loan-form {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.form-group input.input-error {
+  border-color: #e74c3c;
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.validation-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #e74c3c;
+}
+
+.submit-loan-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  background: #27ae60;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 8px;
+}
+
+.submit-loan-button:hover:not(:disabled) {
+  background: #229954;
+}
+
+.submit-loan-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Loans Section */
+.loans-section {
+  margin-top: 24px;
+}
+
+.no-loans-message {
+  padding: 40px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.loans-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Loan Card */
+.loan-card {
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+
+.loan-card.overdue {
+  border-color: #e74c3c;
+  background: #fff5f5;
+}
+
+.loan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.loan-id {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.loan-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-repaid {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.status-defaulted {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-liquidated {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Loan Details */
+.loan-details {
+  margin-bottom: 16px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Next Payment */
+.next-payment {
+  background: #fff9e6;
+  border: 1px solid #ffd966;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.payment-label {
+  font-size: 12px;
+  color: #856404;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.payment-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-amount {
+  font-size: 16px;
+  color: #333;
+  font-weight: 700;
+}
+
+.payment-due {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Loan Complete Message */
+.loan-complete-message {
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+  color: #155724;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Loan Actions */
+.loan-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.repay-button,
+.liquidate-button {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.repay-button {
+  background: #27ae60;
+}
+
+.repay-button:hover {
+  background: #229954;
+}
+
+.liquidate-button {
+  background: #e74c3c;
+}
+
+.liquidate-button:hover {
+  background: #c0392b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .loan-management-panel {
+    padding: 16px;
+  }
+
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .create-loan-button {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .loan-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .payment-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .loan-actions {
+    flex-direction: column;
+  }
+}

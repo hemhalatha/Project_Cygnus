@@ -1,0 +1,18 @@
+{
+  "network": "testnet",
+  "timestamp": "2026-02-08T00:08:27Z",
+  "contracts": {
+    "creditScoring": {
+      "id": "CAGZ2OH7CZX7HVHZD7A2VTRI4W4GUNJH4GAOWKNR2OKXG5RVAXITNRIR",
+      "wasm": "contracts/credit-scoring/target/wasm32-unknown-unknown/release/credit_scoring.wasm"
+    },
+    "loan": {
+      "id": "CBLLDKA4W6GI4AUWOFEDK5CKDGLLTF6P6IUJ3CJMGZTZP6SHRNY477PO",
+      "wasm": "contracts/loan/target/wasm32-unknown-unknown/release/loan_contract.wasm"
+    },
+    "escrow": {
+      "id": "CA36D574C6V74GDSIJZNXMD7VFFEAUQRM57GDEO6A4AWKHDETP2Z5D5G",
+      "wasm": "contracts/escrow/target/wasm32-unknown-unknown/release/escrow_contract.wasm"
+    }
+  }
+}

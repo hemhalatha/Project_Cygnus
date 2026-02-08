@@ -5,6 +5,14 @@ import MetricsChart from './components/MetricsChart';
 import DeploymentPanel from './components/DeploymentPanel';
 import LogViewer from './components/LogViewer';
 import ContractStatus from './components/ContractStatus';
+import { WalletConnector } from './components/WalletConnector';
+import { AgentFundingPanel } from './components/AgentFundingPanel';
+import { TradingPanel } from './components/TradingPanel';
+import { LoanManagementPanel } from './components/LoanManagementPanel';
+import { WalletService } from './services/WalletService';
+import { TransactionService } from './services/TransactionService';
+import { ContractService } from './services/ContractService';
+import { StorageService } from './services/StorageService';
 import './App.css';
 
 function App() {
@@ -23,6 +31,30 @@ function App() {
 
   const [logs, setLogs] = useState([]);
   const [isConnected, setIsConnected] = useState(false);
+  
+  // Wallet and blockchain services
+  const [walletService] = useState(() => new WalletService(new StorageService()));
+  const [transactionService] = useState(() => new TransactionService());
+  const [contractService] = useState(() => new ContractService());
+  const [walletState, setWalletState] = useState(walletService.getState());
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'agents', 'loans'
+  const [selectedAgent, setSelectedAgent] = useState(null);
+
+  useEffect(() => {
+    // Restore wallet connection on app load
+    const restoreWallet = async () => {
+      try {
+        const connection = await walletService.restoreConnection();
+        if (connection) {
+          setWalletState(walletService.getState());
+        }
+      } catch (error) {
+        console.error('Failed to restore wallet connection:', error);
+      }
+    };
+
+    restoreWallet();
+  }, [walletService]);
 
   useEffect(() => {
     // Fetch initial data
@@ -99,21 +131,125 @@ function App() {
     }
   };
 
+  const handleWalletConnect = async (connection) => {
+    setWalletState(walletService.getState());
+  };
+
+  const handleWalletDisconnect = async () => {
+    setWalletState(walletService.getState());
+  };
+
+  const handleBalanceUpdate = () => {
+    setWalletState(walletService.getState());
+  };
+
+  const renderView = () => {
+    switch (currentView) {
+      case 'agents':
+        return (
+          <div className="agents-view">
+            <h2>Agent Management</h2>
+            {selectedAgent ? (
+              <div className="agent-detail">
+                <button onClick={() => setSelectedAgent(null)}>← Back to Agents</button>
+                <h3>Agent: {selectedAgent.id}</h3>
+                
+                <AgentFundingPanel
+                  agentId={selectedAgent.id}
+                  agentAddress={selectedAgent.address}
+                  agentBalance={selectedAgent.balance || '0'}
+                  userBalance={walletState.balance}
+                  transactionService={transactionService}
+                  walletService={walletService}
+                  onBalanceUpdate={handleBalanceUpdate}
+                />
+                
+                <TradingPanel
+                  agentDid={selectedAgent.did}
+                  transactionService={transactionService}
+                  contractService={contractService}
+                  walletService={walletService}
+                />
+              </div>
+            ) : (
+              <div className="agent-list">
+                <p>Select an agent to manage funding and trading operations.</p>
+                {/* Agent list would go here */}
+              </div>
+            )}
+          </div>
+        );
+      
+      case 'loans':
+        return (
+          <div className="loans-view">
+            <h2>Loan Management</h2>
+            {walletState.isConnected ? (
+              <LoanManagementPanel
+                userAddress={walletState.connection?.publicKey || ''}
+                contractService={contractService}
+                transactionService={transactionService}
+                walletService={walletService}
+              />
+            ) : (
+              <p>Please connect your wallet to manage loans.</p>
+            )}
+          </div>
+        );
+      
+      default:
+        return (
+          <>
+            <StatusCards status={systemStatus} />
+            
+            <div className="grid-2">
+              <MetricsChart metrics={metrics} />
+              <ContractStatus />
+            </div>
+            
+            <DeploymentPanel onDeploy={fetchSystemStatus} />
+            
+            <LogViewer logs={logs} />
+          </>
+        );
+    }
+  };
+
   return (
     <div className="app">
       <Header isConnected={isConnected} />
       
+      <div className="wallet-section">
+        <WalletConnector
+          walletService={walletService}
+          onConnect={handleWalletConnect}
+          onDisconnect={handleWalletDisconnect}
+        />
+      </div>
+      
+      <nav className="main-nav">
+        <button 
+          className={currentView === 'dashboard' ? 'active' : ''}
+          onClick={() => setCurrentView('dashboard')}
+        >
+          Dashboard
+        </button>
+        <button 
+          className={currentView === 'agents' ? 'active' : ''}
+          onClick={() => setCurrentView('agents')}
+        >
+          Agents
+        </button>
+        <button 
+          className={currentView === 'loans' ? 'active' : ''}
+          onClick={() => setCurrentView('loans')}
+        >
+          Loans
+        </button>
+      </nav>
+      
       <main className="main-content">
-        <StatusCards status={systemStatus} />
-        
-        <div className="grid-2">
-          <MetricsChart metrics={metrics} />
-          <ContractStatus />
-        </div>
-        
-        <DeploymentPanel onDeploy={fetchSystemStatus} />
-        
-        <LogViewer logs={logs} />
+        {renderView()}
       </main>
     </div>
   );

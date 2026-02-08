@@ -1,0 +1,143 @@
+.transaction-status-display {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  background: white;
+  margin: 1rem 0;
+}
+
+.transaction-status-display.status-pending {
+  border-color: #ffc107;
+  background: #fff8e1;
+}
+
+.transaction-status-display.status-confirmed {
+  border-color: #28a745;
+  background: #d4edda;
+}
+
+.transaction-status-display.status-failed {
+  border-color: #dc3545;
+  background: #f8d7da;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.status-icon {
+  font-size: 1.5rem;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.status-pending .status-text {
+  color: #856404;
+}
+
+.status-confirmed .status-text {
+  color: #155724;
+}
+
+.status-failed .status-text {
+  color: #721c24;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.close-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.status-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transaction-hash,
+.error-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+}
+
+.hash {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+  word-break: break-all;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: #856404;
+}
+
+.spinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #ffc107;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stellar-expert-link {
+  padding: 0.5rem 0;
+}
+
+.stellar-expert-link a {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stellar-expert-link a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  color: #721c24;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  background: rgba(220, 53, 69, 0.1);
+  border-radius: 4px;
+}
