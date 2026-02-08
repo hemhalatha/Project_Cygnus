@@ -100,7 +100,7 @@ export function WalletConnector({ walletService, onConnect, onDisconnect }) {
       <div className="wallet-connector connected">
         <div className="wallet-info">
           <div className="wallet-provider">
-            {walletState.connection.provider === 'freighter' ? '🚀 Freighter' : '⭐ Albedo'}
+            {walletState.connection.provider === 'freighter' ? 'Freighter' : 'Albedo'}
           </div>
           <div className="wallet-address" title={walletState.connection.publicKey}>
             {formatAddress(walletState.connection.publicKey)}
@@ -158,7 +158,7 @@ export function WalletConnector({ walletService, onConnect, onDisconnect }) {
               onClick={() => handleConnect(wallet.name)}
               disabled={isConnecting}
             >
-              {wallet.name === 'freighter' ? '🚀 Connect Freighter' : '⭐ Connect Albedo'}
+              {wallet.name === 'freighter' ? 'Connect Freighter' : 'Connect Albedo'}
             </button>
           ))}
         </div>

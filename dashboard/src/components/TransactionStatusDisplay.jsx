@@ -12,13 +12,13 @@ export function TransactionStatusDisplay({ status, onClose }) {
   const getStatusIcon = () => {
     switch (status.status) {
       case 'pending':
-        return '⏳';
+        return '[PENDING]';
       case 'confirmed':
-        return '✅';
+        return '[SUCCESS]';
       case 'failed':
-        return '❌';
+        return '[FAILED]';
       default:
-        return '❓';
+        return '[UNKNOWN]';
     }
   };
 

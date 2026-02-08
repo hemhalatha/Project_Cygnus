@@ -576,7 +576,7 @@ export function LoanManagementPanel({
 
                   {loan.status === 'Repaid' && (
                     <div className="loan-complete-message">
-                      ✓ Loan fully repaid. Collateral released.
+                      [SUCCESS] Loan fully repaid. Collateral released.
                     </div>
                   )}
 

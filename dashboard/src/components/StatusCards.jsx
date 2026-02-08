@@ -15,7 +15,7 @@ function StatusCards({ status }) {
       value: status.contracts.deployed,
       total: status.contracts.total,
       status: status.contracts.deployed === status.contracts.total ? 'success' : 'danger',
-      icon: '📜',
+      icon: '[CONTRACT]',
     },
     {
       title: 'Payment Channels',
@@ -29,7 +29,7 @@ function StatusCards({ status }) {
       value: status.transactions.count,
       rate: `${status.transactions.rate}/min`,
       status: 'info',
-      icon: '💳',
+      icon: '[TX]',
     },
   ];
 

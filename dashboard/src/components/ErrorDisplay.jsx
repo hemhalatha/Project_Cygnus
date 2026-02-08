@@ -21,19 +21,19 @@ export function ErrorDisplay({
   const getErrorIcon = () => {
     switch (errorType) {
       case 'wallet':
-        return '🔌';
+        return '[WALLET]';
       case 'transaction':
-        return '💸';
+        return '[TX]';
       case 'network':
-        return '🌐';
+        return '[NET]';
       case 'contract':
-        return '📜';
+        return '[CONTRACT]';
       case 'validation':
-        return '⚠️';
+        return '[WARN]';
       case 'timeout':
-        return '⏱️';
+        return '[TIMEOUT]';
       default:
-        return '❌';
+        return '[ERROR]';
     }
   };
 
