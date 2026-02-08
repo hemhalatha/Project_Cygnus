@@ -1,22 +1,14 @@
 import { useState, useEffect } from 'react';
 import './WalletConnector.css';
 
-/**
- * WalletConnector component for connecting and managing Stellar wallets
- * 
- * Supports Freighter and Albedo wallet providers
- */
 export function WalletConnector({ walletService, onConnect, onDisconnect }) {
   const [availableWallets, setAvailableWallets] = useState([]);
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState(null);
   const [walletState, setWalletState] = useState(null);
 
-  // Detect wallets on mount
   useEffect(() => {
     detectWallets();
-    
-    // Try to restore connection
     restoreConnection();
   }, []);
 
@@ -24,10 +16,8 @@ export function WalletConnector({ walletService, onConnect, onDisconnect }) {
     try {
       const wallets = await walletService.detectWallets();
       setAvailableWallets(wallets);
-      
-      if (wallets.length === 0) {
-        setError('No wallet providers found. Please install Freighter or Albedo.');
-      }
+      // No error state set when wallets.length === 0
+      // The Install_Prompt UI will handle the "no wallets" case
     } catch (err) {
       console.error('Failed to detect wallets:', err);
       setError('Failed to detect wallet providers');
@@ -85,88 +75,131 @@ export function WalletConnector({ walletService, onConnect, onDisconnect }) {
 
   const formatAddress = (address) => {
     if (!address) return '';
-    return `${address.slice(0, 4)}...${address.slice(-4)}`;
+    return `${address.slice(0, 8)}...${address.slice(-8)}`;
   };
 
-  const formatBalance = (stroops) => {
-    if (!stroops) return '0';
-    const xlm = Number(stroops) / 10_000_000;
-    return xlm.toFixed(2);
-  };
-
-  // Connected state
-  if (walletState?.isConnected && walletState.connection) {
+  if (isConnecting) {
     return (
-      <div className="wallet-connector connected">
-        <div className="wallet-info">
-          <div className="wallet-provider">
-            {walletState.connection.provider === 'freighter' ? 'Freighter' : 'Albedo'}
-          </div>
-          <div className="wallet-address" title={walletState.connection.publicKey}>
-            {formatAddress(walletState.connection.publicKey)}
-          </div>
-          <div className="wallet-balance">
-            {formatBalance(walletState.balance)} XLM
-          </div>
+      <div className="wallet-connector">
+        <div className="wallet-loading">
+          <div className="spinner"></div>
         </div>
-        <button 
-          className="disconnect-button"
-          onClick={handleDisconnect}
-        >
-          Disconnect
-        </button>
       </div>
     );
   }
 
-  // Disconnected state
-  return (
-    <div className="wallet-connector disconnected">
-      <h3>Connect Wallet</h3>
-      
-      {error && (
-        <div className="error-message">
-          {error}
-        </div>
-      )}
+  if (walletState?.isConnected) {
+    return (
+      <div className="wallet-connector">
+        <div className="wallet-connected">
+          <div className="wallet-connected-header">
+            <div className="wallet-connected-icon">✓</div>
+            <div className="wallet-connected-info">
+              <div className="wallet-connected-label">Connected</div>
+              <div className="wallet-connected-provider">
+                {walletState.connection.provider === 'freighter' ? 'Freighter' : 'Albedo'}
+              </div>
+            </div>
+          </div>
 
-      {availableWallets.length === 0 && !error && (
-        <div className="no-wallets">
-          <p>No wallet providers detected.</p>
-          <p>Please install:</p>
-          <ul>
-            <li>
-              <a href="https://www.freighter.app/" target="_blank" rel="noopener noreferrer">
-                Freighter Wallet
-              </a>
-            </li>
-            <li>
-              <a href="https://albedo.link/" target="_blank" rel="noopener noreferrer">
-                Albedo Wallet
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+          <div className="wallet-details">
+            <div className="wallet-detail-row">
+              <span className="wallet-detail-label">Address</span>
+              <span className="wallet-detail-value">
+                {formatAddress(walletState.connection.publicKey)}
+              </span>
+            </div>
+            
+            <div className="wallet-address-full">
+              {walletState.connection.publicKey}
+            </div>
+          </div>
 
-      {availableWallets.length > 0 && (
-        <div className="wallet-options">
-          {availableWallets.map((wallet) => (
-            <button
-              key={wallet.name}
-              className="wallet-option"
-              onClick={() => handleConnect(wallet.name)}
-              disabled={isConnecting}
-            >
-              {wallet.name === 'freighter' ? 'Connect Freighter' : 'Connect Albedo'}
+          {walletState.balance && (
+            <div className="wallet-balance">
+              <div className="wallet-balance-label">Balance</div>
+              <div className="wallet-balance-value">
+                {parseFloat(walletState.balance).toFixed(2)}
+                <span className="wallet-balance-currency">XLM</span>
+              </div>
+            </div>
+          )}
+
+          <div className="wallet-actions">
+            <button className="btn-secondary" onClick={handleDisconnect}>
+              Disconnect
             </button>
-          ))}
+          </div>
+        </div>
+
+        {error && (
+          <div className="wallet-error">
+            <div className="wallet-error-message">
+              <span>⚠</span>
+              <span>{error}</span>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="wallet-connector">
+      <div className="wallet-connector-header">
+        <h2 className="wallet-connector-title">Connect Wallet</h2>
+        <p className="wallet-connector-subtitle">
+          Choose a wallet provider to connect to Stellar network
+        </p>
+      </div>
+
+      <div className="wallet-options">
+        {availableWallets.map((wallet) => (
+          <div
+            key={wallet.name}
+            className="wallet-option"
+            onClick={() => handleConnect(wallet.name)}
+          >
+            <div className="wallet-option-icon">
+              {wallet.name === 'freighter' ? '🚀' : '⭐'}
+            </div>
+            <div className="wallet-option-content">
+              <div className="wallet-option-name">
+                {wallet.name === 'freighter' ? 'Freighter' : 'Albedo'}
+              </div>
+              <div className="wallet-option-description">
+                {wallet.name === 'freighter' 
+                  ? 'Browser extension wallet for Stellar' 
+                  : 'Web-based Stellar wallet'}
+              </div>
+            </div>
+            <div className="wallet-option-arrow">→</div>
+          </div>
+        ))}
+      </div>
+
+      {availableWallets.length === 0 && (
+        <div className="wallet-install-prompt">
+          <div className="wallet-install-message">
+            No wallet detected. Install a Stellar wallet to continue.
+          </div>
+          <a
+            href="https://www.freighter.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wallet-install-link"
+          >
+            Install Freighter →
+          </a>
         </div>
       )}
 
-      {isConnecting && (
-        <div className="connecting">
-          Connecting...
+      {error && (
+        <div className="wallet-error">
+          <div className="wallet-error-message">
+            <span>⚠</span>
+            <span>{error}</span>
+          </div>
         </div>
       )}
     </div>

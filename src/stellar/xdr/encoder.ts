@@ -8,7 +8,6 @@
 import * as StellarSdk from '@stellar/stellar-sdk';
 import {
   Transaction,
-  TransactionEnvelope,
   Operation,
   Memo,
   MemoType,
@@ -21,6 +20,11 @@ import {
  */
 export function encodeTransaction(tx: Transaction): string {
   try {
+    // Validate operations array is not empty
+    if (!tx.operations || tx.operations.length === 0) {
+      throw new Error('Transaction must have at least one operation');
+    }
+
     const account = new StellarSdk.Account(tx.sourceAccount, tx.seqNum);
 
     const txBuilder = new StellarSdk.TransactionBuilder(account, {
@@ -48,7 +52,7 @@ export function encodeTransaction(tx: Transaction): string {
     }
 
     const transaction = txBuilder.build();
-    return transaction.toXDR('base64');
+    return transaction.toXDR();
   } catch (error) {
     throw new Error(`Failed to encode transaction: ${error}`);
   }
@@ -122,9 +126,6 @@ function encodeAsset(asset: Asset): StellarSdk.Asset {
  */
 export function encodeToXDR(data: any, type: string): string {
   try {
-    // Use Stellar SDK's XDR encoding capabilities
-    const xdr = StellarSdk.xdr;
-
     // This is a simplified implementation
     // In production, you'd need to handle all XDR types
     switch (type) {

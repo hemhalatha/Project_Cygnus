@@ -6,7 +6,8 @@ import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+const NODE_ENV = process.env.NODE_ENV || 'development';
 
 app.use(cors());
 app.use(express.json());
@@ -37,28 +38,33 @@ let contracts = [
   { name: 'Escrow', status: 'deployed', address: 'EXXX...XXXX', calls: 1247 },
 ];
 
+// Health check endpoint
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // API Routes
-app.get('/api/status', (req, res) => {
+app.get('/api/status', (_req, res) => {
   res.json(systemStatus);
 });
 
-app.get('/api/metrics', (req, res) => {
+app.get('/api/metrics', (_req, res) => {
   res.json(metrics);
 });
 
-app.get('/api/logs', (req, res) => {
+app.get('/api/logs', (_req, res) => {
   res.json(logs);
 });
 
-app.get('/api/contracts', (req, res) => {
+app.get('/api/contracts', (_req, res) => {
   res.json(contracts);
 });
 
-app.post('/api/build', async (req, res) => {
+app.post('/api/build', async (_req, res) => {
   try {
     addLog('info', 'Starting contract build...');
     
-    const { stdout, stderr } = await execAsync('make build-contracts', {
+    const { stdout } = await execAsync('make build-contracts', {
       cwd: '..',
       timeout: 60000,
     });
@@ -66,16 +72,17 @@ app.post('/api/build', async (req, res) => {
     addLog('info', 'Contracts built successfully');
     res.json({ success: true, message: 'Contracts built successfully', output: stdout });
   } catch (error) {
-    addLog('error', `Build failed: ${error.message}`);
-    res.status(500).json({ success: false, error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    addLog('error', `Build failed: ${errorMessage}`);
+    res.status(500).json({ success: false, error: errorMessage });
   }
 });
 
-app.post('/api/test', async (req, res) => {
+app.post('/api/test', async (_req, res) => {
   try {
     addLog('info', 'Running tests...');
     
-    const { stdout, stderr } = await execAsync('npm test', {
+    const { stdout } = await execAsync('npm test', {
       cwd: '..',
       timeout: 120000,
     });
@@ -83,8 +90,9 @@ app.post('/api/test', async (req, res) => {
     addLog('info', 'Tests completed successfully');
     res.json({ success: true, message: 'All tests passed', output: stdout });
   } catch (error) {
-    addLog('error', `Tests failed: ${error.message}`);
-    res.status(500).json({ success: false, error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    addLog('error', `Tests failed: ${errorMessage}`);
+    res.status(500).json({ success: false, error: errorMessage });
   }
 });
 
@@ -109,7 +117,7 @@ app.post('/api/deploy', async (req, res) => {
         throw new Error('Invalid deployment target');
     }
     
-    const { stdout, stderr } = await execAsync(command, {
+    const { stdout } = await execAsync(command, {
       cwd: '..',
       timeout: 180000,
     });
@@ -119,8 +127,9 @@ app.post('/api/deploy', async (req, res) => {
     
     res.json({ success: true, message: `Deployed to ${target} successfully`, output: stdout });
   } catch (error) {
-    addLog('error', `Deployment to ${target} failed: ${error.message}`);
-    res.status(500).json({ success: false, error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    addLog('error', `Deployment to ${target} failed: ${errorMessage}`);
+    res.status(500).json({ success: false, error: errorMessage });
   }
 });
 
@@ -140,7 +149,8 @@ function addLog(level, message) {
 
 // Start HTTP server
 const server = app.listen(PORT, () => {
-  console.log(`Dashboard server running on http://localhost:${PORT}`);
+  console.log(`[${NODE_ENV}] Dashboard server running on http://localhost:${PORT}`);
+  console.log(`[${NODE_ENV}] Health check: http://localhost:${PORT}/health`);
 });
 
 // WebSocket server
@@ -160,19 +170,28 @@ wss.on('connection', (ws) => {
     console.log('Client disconnected');
     clients.delete(ws);
   });
+  
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error);
+    clients.delete(ws);
+  });
 });
 
 function broadcastToClients(data) {
   const message = JSON.stringify(data);
   clients.forEach((client) => {
     if (client.readyState === 1) { // OPEN
-      client.send(message);
+      try {
+        client.send(message);
+      } catch (error) {
+        console.error('Error broadcasting to client:', error);
+      }
     }
   });
 }
 
 // Simulate real-time updates
-setInterval(() => {
+const metricsInterval = setInterval(() => {
   // Update metrics
   metrics.settlement.push(3000 + Math.random() * 2000);
   metrics.latency.push(40 + Math.random() * 30);
@@ -197,7 +216,7 @@ setInterval(() => {
 }, 3000);
 
 // Simulate occasional logs
-setInterval(() => {
+const logsInterval = setInterval(() => {
   const messages = [
     'Transaction processed successfully',
     'Agent evaluated opportunity',
@@ -211,5 +230,28 @@ setInterval(() => {
   
   addLog(levels[randomIndex], messages[randomIndex]);
 }, 8000);
+
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down gracefully...');
+  clearInterval(metricsInterval);
+  clearInterval(logsInterval);
+  
+  server.close(() => {
+    console.log('Server closed');
+    process.exit(0);
+  });
+});
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, shutting down gracefully...');
+  clearInterval(metricsInterval);
+  clearInterval(logsInterval);
+  
+  server.close(() => {
+    console.log('Server closed');
+    process.exit(0);
+  });
+});
 
 console.log('Dashboard backend initialized');

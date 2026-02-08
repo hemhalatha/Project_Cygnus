@@ -1,0 +1,951 @@
+
+ RUN  v1.6.1 /home/dj/Projects/Project_Cygnus/dashboard
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: call
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: key
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: to
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: z
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: on
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: ~$x!'"R&
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: #?
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: %=
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: /Fe[~_
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: /!WFun
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: ,Z,S
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: 7.?bl}
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: ^[F(
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: C
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: X@OW1<'fKRy
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: vX~nf,8!mFo
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: {0ubV4]Yw`
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: J0{n+m"^
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: bind
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: )EL|Y*
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: JXxL! {b}
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: 4jq
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: y<G(Fj
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: `,.1&%FW-d<\
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: U[uI
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: yy~
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: D$QywSR'
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: tv]ryj
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: &l
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: b{$zFM #&$~
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: KT
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: y1Qi-YdG
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: MLU6y0WBkhK
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: 4)=6_"~{{87
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: b",,N
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: t[)s3EQM
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: hpt
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: %}Dm|L
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: om
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: m#6#x}?BhJXr
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: m|tox(ij5?Dv
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: O`zkeyOnamec
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: $|eG
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: cY
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: A3sw#|2RTMvx
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: SXH-Z\~90iT
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: va
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: k?
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: kX9W@~%
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: O
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: ;4
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: *
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: |tZ.
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: +.'X1F1.*/
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: e}&
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: Wx#
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: km- c9d
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: ~.xN z:wiy
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: a@^!
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: DmuAYMk:A2
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: #2D/ma&]
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: yK0$
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: #`&~T~@l0sUM
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: }Fdn0>N
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: FH4t
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: UvG"vz5e&vH}
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: {9iS
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: __proto__
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: M"R$!$%V!;
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: Yy&
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: Tgd
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: r9*^!(LN
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: Z(v7Nd p:_f
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: 4x
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: */
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: tu&1JcQ+S1
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: EXrY6"
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: wU
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: joH6F[9$
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+Failed to detect wallets: Error: aQ-Fl
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+stderr | src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+Failed to detect wallets: Error: c;zxB
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: &
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+    at runFiles (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:958:5)
+Failed to detect wallets: Error: ""iA
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:55:65
+    at AsyncProperty.predicate (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.js:14:59)
+    at AsyncProperty.run (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/property/AsyncProperty.generic.js:46:39)
+    at asyncRunIt (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/fast-check/lib/esm/check/runner/Runner.js:33:36)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at processTimers (node:internal/timers:541:7)
+    at /home/dj/Projects/Project_Cygnus/dashboard/src/components/WalletConnector.property.test.jsx:38:7
+    at runTest (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:781:11)
+    at runSuite (file:///home/dj/Projects/Project_Cygnus/dashboard/node_modules/@vitest/runner/dist/index.js:909:15)
+
+ ✓ src/components/WalletConnector.property.test.jsx > WalletConnector - Property-Based Tests > 3.1 Property test for message exclusivity > Property 1: Message Exclusivity - Install_Prompt and error message SHALL NOT both be visible simultaneously when no wallets available
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  10:04:31
+   Duration  1.06s (transform 42ms, setup 0ms, collect 123ms, tests 267ms, environment 255ms, prepare 79ms)
+

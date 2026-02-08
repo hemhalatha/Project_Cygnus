@@ -1,0 +1,268 @@
+
+ RUN  v1.6.1 /home/dj/Projects/Project_Cygnus/dashboard
+
+stderr | src/services/StorageService.test.ts > StorageService > getWalletConnection > should return null when provider is invalid
+Invalid wallet provider in storage: invalid
+
+ ✓ src/services/StorageService.test.ts  (13 tests) 4ms
+ ✓ src/adapters/WalletAdapters.test.ts  (22 tests) 10ms
+stderr | src/services/WalletService.test.ts > WalletService > detectWallets > should handle detection errors gracefully
+Failed to detect freighter: Error: Detection failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:110:58
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > connect > should handle balance fetch failure
+Failed to fetch balance: Error: Network error
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:210:41
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > disconnect > should handle disconnect errors gracefully
+Disconnect error: Error: Disconnect failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:249:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > disconnect > should work when no wallet is connected
+Disconnect error: Error: Disconnect failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:249:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > fetchBalance > should return 0 for non-existent account (404)
+Failed to fetch balance: Error: Request failed with status code 404
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:331:21
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > restoreConnection > should clear storage when provider is no longer installed
+Stored provider no longer installed: freighter
+
+stderr | src/services/WalletService.test.ts > WalletService > restoreConnection > should clear storage when wallet address changed
+Wallet address changed
+
+stderr | src/services/WalletService.test.ts > WalletService > restoreConnection > should clear storage when verification fails
+Failed to verify stored connection: Error: Verification failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:438:59
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > restoreConnection > should handle balance fetch failure during restore
+Failed to fetch balance: Error: Network error
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:450:41
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+Failed to restore connection: Error: Failed to fetch balance
+    at WalletService.fetchBalance [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.ts:176:13[90m)[39m
+    at WalletService.restoreConnection [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.ts:233:23[90m)[39m
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:452:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:11[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > refreshBalance > should throw error when not connected
+Disconnect error: Error: Disconnect failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:249:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+ ✓ src/services/WalletService.test.ts  (40 tests) 22ms
+stderr | src/services/WalletService.test.ts > WalletService > integration scenarios > should handle full connect-disconnect-reconnect flow
+Disconnect error: Error: Disconnect failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:249:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/services/WalletService.test.ts > WalletService > integration scenarios > should handle switching between wallet providers
+Disconnect error: Error: Disconnect failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/services/WalletService.test.ts:249:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.2 Test detection failure scenario > should display error message when wallet detection fails
+Failed to detect wallets: Error: Network error
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:127:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.2 Test detection failure scenario > should set error state when detection throws exception
+Failed to detect wallets: Error: Detection failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:151:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.2 Test detection failure scenario > should display error with warning icon when detection fails
+Failed to detect wallets: Error: Detection failed
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:176:57
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.3 Test connection failure scenario > should display error message when wallet connection fails
+Connection failed: Error: User rejected connection
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:209:51
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.3 Test connection failure scenario > should set error state when connection throws exception
+Connection failed: Error: Connection timeout
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:247:51
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+stderr | src/components/WalletConnector.test.jsx > WalletConnector > 2.3 Test connection failure scenario > should display generic error message when connection fails without specific message
+Connection failed: Error: 
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/WalletConnector.test.jsx:286:51
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+
+ ✓ src/components/WalletConnector.test.jsx  (12 tests) 108ms
+stderr | src/components/AgentFundingPanel.test.jsx > AgentFundingPanel > should display error when wallet not connected
+Funding failed: Error: Wallet not connected
+    at handleFund [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/AgentFundingPanel.jsx:95:15[90m)[39m
+    at HTMLUnknownElement.callCallback [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4164:14[90m)[39m
+    at HTMLUnknownElement.callTheUserObjectsOperation [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/generated/EventListener.js:26:30[90m)[39m
+    at innerInvokeEventListeners [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/events/EventTarget-impl.js:360:16[90m)[39m
+    at invokeEventListeners [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/events/EventTarget-impl.js:296:3[90m)[39m
+    at HTMLUnknownElementImpl._dispatch [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/events/EventTarget-impl.js:243:9[90m)[39m
+    at HTMLUnknownElementImpl.dispatchEvent [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/events/EventTarget-impl.js:114:17[90m)[39m
+    at HTMLUnknownElement.dispatchEvent [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mjsdom[24m/lib/jsdom/living/generated/EventTarget.js:241:34[90m)[39m
+    at Object.invokeGuardedCallbackDev [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4213:16[90m)[39m
+    at invokeGuardedCallback [90m(/home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mreact-dom[24m/cjs/react-dom.development.js:4277:31[90m)[39m
+
+stderr | src/components/AgentFundingPanel.test.jsx > AgentFundingPanel > should display error when transaction is rejected
+Funding failed: Error: Transaction rejected by user
+    at [90m/home/dj/Projects/Project_Cygnus/dashboard/[39msrc/components/AgentFundingPanel.test.jsx:208:7
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:135:14
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:60:26
+    at runTest [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:781:17[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runSuite [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:909:15[90m)[39m
+    at runFiles [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:958:5[90m)[39m
+    at startTests [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4m@vitest/runner[24m/dist/index.js:967:3[90m)[39m
+    at [90mfile:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:116:7
+    at withEnv [90m(file:///home/dj/Projects/Project_Cygnus/dashboard/[39mnode_modules/[4mvitest[24m/dist/chunks/runtime-runBaseTests.oAvMKtQC.js:83:5[90m)[39m
+
+ ✓ src/components/AgentFundingPanel.test.jsx  (7 tests) 175ms
+
+ Test Files  5 passed (5)
+      Tests  94 passed (94)
+   Start at  09:59:52
+   Duration  1.09s (transform 232ms, setup 0ms, collect 524ms, tests 319ms, environment 1.61s, prepare 542ms)
+

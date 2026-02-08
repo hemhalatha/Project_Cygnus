@@ -317,7 +317,7 @@ export class Timer {
  * Decorator for automatic timing
  */
 export function Timed(metricName: string, collector: MetricsCollector) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (_target: any, _propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {

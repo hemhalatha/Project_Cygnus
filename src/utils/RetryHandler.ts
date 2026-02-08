@@ -91,7 +91,7 @@ export class RetryHandler {
    */
   async executeWithResult<T>(
     operation: () => Promise<T>,
-    operationName: string = 'operation'
+    _operationName: string = 'operation'
   ): Promise<RetryResult<T>> {
     const config = this.config as RetryConfig;
     let lastError: Error | undefined;

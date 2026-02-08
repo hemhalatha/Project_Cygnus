@@ -5,7 +5,7 @@
  */
 
 import * as StellarSdk from '@stellar/stellar-sdk';
-import { Transaction, SignedTransaction } from '../../agents/runtime/types.js';
+import { Transaction, SignedTransaction } from '../types/index.js';
 
 /**
  * Transaction policy

@@ -12,7 +12,6 @@ export * from './decoder.js';
 
 // Re-export commonly used functions
 export {
-  encodeTransactionEnvelope,
   encodeTransaction,
   encodeToXDR,
   validateXDR,

@@ -1,52 +1,92 @@
-import React from 'react';
 import './StatusCards.css';
 
 function StatusCards({ status }) {
+  if (!status) return null;
+
   const cards = [
     {
-      title: 'Active Agents',
+      label: 'Active Agents',
       value: status.agents.active,
-      total: status.agents.total,
-      status: status.agents.active === status.agents.total ? 'success' : 'warning',
+      subvalue: `of ${status.agents.total}`,
       icon: '🤖',
+      status: status.agents.active === status.agents.total ? 'success' : 'warning',
+      change: '+12%',
+      changeType: 'positive',
+      meta: 'vs last month',
+      progress: (status.agents.active / status.agents.total) * 100,
     },
     {
-      title: 'Smart Contracts',
+      label: 'Deployed Contracts',
       value: status.contracts.deployed,
-      total: status.contracts.total,
-      status: status.contracts.deployed === status.contracts.total ? 'success' : 'danger',
+      subvalue: `of ${status.contracts.total}`,
       icon: '[CONTRACT]',
+      status: status.contracts.deployed === status.contracts.total ? 'success' : 'danger',
+      change: '100%',
+      changeType: 'positive',
+      meta: 'deployment rate',
+      progress: (status.contracts.deployed / status.contracts.total) * 100,
     },
     {
-      title: 'Payment Channels',
+      label: 'Payment Channels',
       value: status.channels.active,
-      total: status.channels.total,
-      status: 'info',
+      subvalue: `of ${status.channels.total}`,
       icon: '⚡',
+      status: 'info',
+      change: '+8%',
+      changeType: 'positive',
+      meta: 'vs last week',
+      progress: (status.channels.active / status.channels.total) * 100,
     },
     {
-      title: 'Transactions',
-      value: status.transactions.count,
-      rate: `${status.transactions.rate}/min`,
-      status: 'info',
+      label: 'Transactions',
+      value: status.transactions.count.toLocaleString(),
+      subvalue: `${status.transactions.rate}/min`,
       icon: '[TX]',
+      status: 'info',
+      change: '+24%',
+      changeType: 'positive',
+      meta: 'throughput',
+      progress: 75,
     },
   ];
 
   return (
     <div className="status-cards">
       {cards.map((card, index) => (
-        <div key={index} className="status-card card">
-          <div className="status-card-icon">{card.icon}</div>
-          <div className="status-card-content">
-            <div className="status-card-title">{card.title}</div>
+        <div key={index} className="status-card">
+          <div className="status-card-header">
+            <div className={`status-card-icon ${card.status}`}>
+              {card.icon}
+            </div>
+            <div className={`status-card-badge ${card.status}`}>
+              {card.status}
+            </div>
+          </div>
+          
+          <div className="status-card-body">
+            <div className="status-card-label">{card.label}</div>
             <div className="status-card-value">
               {card.value}
-              {card.total !== undefined && <span className="status-card-total">/{card.total}</span>}
+              <span className="status-card-subvalue">{card.subvalue}</span>
             </div>
-            {card.rate && <div className="status-card-rate">{card.rate}</div>}
           </div>
-          <div className={`status-indicator ${card.status}`}></div>
+
+          <div className="status-card-progress">
+            <div className="progress-bar">
+              <div
+                className={`progress-fill ${card.status}`}
+                style={{ width: `${card.progress}%` }}
+              ></div>
+            </div>
+          </div>
+
+          <div className="status-card-footer">
+            <div className={`status-card-change ${card.changeType}`}>
+              <span>{card.changeType === 'positive' ? '↑' : '↓'}</span>
+              <span>{card.change}</span>
+            </div>
+            <div className="status-card-meta">{card.meta}</div>
+          </div>
         </div>
       ))}
     </div>

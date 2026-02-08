@@ -91,7 +91,7 @@ describe('RetryHandler', () => {
     });
 
     it('should return failure result after retries', async () => {
-      const operation = vi.fn().mockRejectedValue(new Error('Failed'));
+      const operation = vi.fn().mockRejectedValue(new Error('ETIMEDOUT'));
       const result = await retryHandler.executeWithResult(operation, 'test-op');
       
       expect(result.success).toBe(false);

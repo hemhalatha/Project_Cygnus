@@ -8,8 +8,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "node server/index.js",
+    "start": "npm run server",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy:docker": "docker-compose up -d",
+    "deploy:build": "npm run build && npm run server",
+    "logs": "docker-compose logs -f"
   },
   "dependencies": {
     "@stellar/stellar-sdk": "^12.0.0",

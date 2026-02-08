@@ -5,8 +5,8 @@
  * DIDs, and transaction data.
  */
 
-import { PaymentProof } from '../protocols/x402/types';
-import { VerifiableCredential, DIDDocument } from '../protocols/masumi/types';
+import { PaymentProof } from '../../protocols/x402/types.js';
+import { VerifiableCredential, DIDDocument } from '../../protocols/masumi/types.js';
 
 export class ValidationError extends Error {
   constructor(

@@ -1,241 +1,210 @@
 # Project Cygnus Dashboard
 
-A clean, professional web-based dashboard for monitoring, visualizing, and managing Project Cygnus deployments.
+Modern, minimal, and analytical dashboard for monitoring and managing the Project Cygnus machine economy stack on Stellar blockchain.
 
 ## Features
 
-- **Real-time Monitoring**: Live system status, metrics, and logs via WebSocket
-- **Performance Metrics**: Settlement finality, channel latency, and error rates
-- **Contract Status**: Monitor deployed smart contracts and their activity
-- **Deployment Controls**: Build, test, and deploy with one click
-- **Log Viewer**: Real-time system logs with filtering and auto-scroll
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Wallet Integration**: Connect Freighter or Albedo wallets
+- **Real-time Monitoring**: Live metrics and transaction tracking
+- **Agent Management**: Fund and manage autonomous agents
+- **Contract Deployment**: Deploy and monitor smart contracts
+- **Loan Management**: P2P lending interface
+- **Trading Operations**: Execute trades through agents
+
+## Tech Stack
+
+- **Frontend**: React + Vite
+- **Backend**: Express.js + WebSocket
+- **Blockchain**: Stellar SDK
+- **Styling**: Modern CSS with dark theme
 
 ## Quick Start
 
-### 1. Install Dependencies
+### Development
 
 ```bash
-cd dashboard
+# Install dependencies
 npm install
+
+# Start both frontend and backend
+./start.sh
+
+# Or start separately:
+npm run server  # Backend on port 3001
+npm run dev     # Frontend on port 5173
 ```
 
-### 2. Start the Backend Server
+### Production Build
 
 ```bash
-npm run server
+# Build for production
+./build.sh
+
+# Or manually:
+npm run build
+npm run preview
 ```
 
-The backend API will run on `http://localhost:3001`
-
-### 3. Start the Frontend (in a new terminal)
+### Docker Deployment
 
 ```bash
-npm run dev
+# Build and run with Docker Compose
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
 ```
 
-The dashboard will open at `http://localhost:3000`
+## Environment Variables
 
-## Architecture
+Create a `.env` file in the dashboard directory:
 
-```
-dashboard/
-├── src/
-│   ├── components/       # React components
-│   │   ├── Header.jsx           # Top navigation bar
-│   │   ├── StatusCards.jsx      # System status overview
-│   │   ├── MetricsChart.jsx     # Performance metrics
-│   │   ├── ContractStatus.jsx   # Smart contract monitoring
-│   │   ├── DeploymentPanel.jsx  # Deployment controls
-│   │   └── LogViewer.jsx        # Real-time logs
-│   ├── App.jsx           # Main application
-│   ├── main.jsx          # Entry point
-│   └── index.css         # Global styles
-├── server/
-│   └── index.js          # Express + WebSocket server
-├── package.json
-└── vite.config.js
+```env
+PORT=3001
+NODE_ENV=production
+STELLAR_NETWORK=testnet
 ```
 
 ## API Endpoints
 
-### GET /api/status
-Returns current system status:
-```json
-{
-  "agents": { "active": 3, "total": 3 },
-  "contracts": { "deployed": 3, "total": 3 },
-  "channels": { "active": 5, "total": 10 },
-  "transactions": { "count": 1247, "rate": 12 }
-}
+### Backend Server (Port 3001)
+
+- `GET /health` - Health check
+- `GET /api/status` - System status
+- `GET /api/metrics` - Performance metrics
+- `GET /api/logs` - System logs
+- `GET /api/contracts` - Contract status
+- `POST /api/build` - Build contracts
+- `POST /api/test` - Run tests
+- `POST /api/deploy` - Deploy to target
+
+### WebSocket
+
+Connect to `ws://localhost:3001` for real-time updates:
+- System status updates
+- Metrics updates
+- Log streaming
+
+## Project Structure
+
 ```
-
-### GET /api/metrics
-Returns performance metrics:
-```json
-{
-  "settlement": [3200, 3400, 3100],
-  "latency": [45, 52, 48],
-  "errors": [2, 1, 3]
-}
+dashboard/
+├── src/
+│   ├── components/      # React components
+│   │   ├── Header.jsx
+│   │   ├── StatusCards.jsx
+│   │   ├── WalletConnector.jsx
+│   │   └── ...
+│   ├── services/        # Business logic
+│   │   ├── WalletService.ts
+│   │   ├── ContractService.ts
+│   │   └── TransactionService.ts
+│   ├── adapters/        # Wallet adapters
+│   ├── types/           # TypeScript types
+│   └── App.jsx          # Main app component
+├── server/
+│   └── index.js         # Backend server
+├── Dockerfile           # Docker configuration
+├── docker-compose.yml   # Docker Compose config
+└── package.json         # Dependencies
 ```
-
-### GET /api/logs
-Returns recent system logs (last 100 entries)
-
-### GET /api/contracts
-Returns smart contract status
-
-### POST /api/build
-Builds smart contracts
-```bash
-curl -X POST http://localhost:3001/api/build
-```
-
-### POST /api/test
-Runs test suite
-```bash
-curl -X POST http://localhost:3001/api/test
-```
-
-### POST /api/deploy
-Deploys to specified target
-```bash
-curl -X POST http://localhost:3001/api/deploy \
-  -H "Content-Type: application/json" \
-  -d '{"target": "testnet"}'
-```
-
-Supported targets: `testnet`, `docker`, `kubernetes`
-
-## WebSocket Events
-
-The dashboard uses WebSocket for real-time updates:
-
-- **status**: System status updates
-- **metrics**: Performance metrics updates
-- **log**: New log entries
 
 ## Development
 
-### Build for Production
+### Running Tests
+
+```bash
+npm test
+```
+
+### Building
 
 ```bash
 npm run build
 ```
 
-Output will be in `dist/` directory.
-
-### Preview Production Build
+### Linting
 
 ```bash
-npm run preview
-```
-
-## Configuration
-
-### Backend Port
-
-Edit `dashboard/server/index.js`:
-```javascript
-const PORT = 3001; // Change this
-```
-
-### Frontend Proxy
-
-Edit `dashboard/vite.config.js`:
-```javascript
-proxy: {
-  '/api': {
-    target: 'http://localhost:3001', // Change this
-  },
-}
-```
-
-## Customization
-
-### Colors
-
-Edit `dashboard/src/index.css`:
-```css
-:root {
-  --primary: #4a90e2;
-  --success: #27ae60;
-  --warning: #f39c12;
-  --danger: #e74c3c;
-  --dark: #0a0e27;
-  --card-bg: #1a1f3a;
-  --border: #2a2f4a;
-}
-```
-
-### Metrics Thresholds
-
-Edit `dashboard/src/components/MetricsChart.jsx`:
-```javascript
-const getStatusColor = (value, threshold) => {
-  if (value < threshold * 0.7) return 'var(--success)';
-  if (value < threshold) return 'var(--warning)';
-  return 'var(--danger)';
-};
+npm run lint
 ```
 
 ## Deployment
 
 ### Docker
 
-Create `dashboard/Dockerfile`:
-```dockerfile
-FROM node:20-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-EXPOSE 3000 3001
-CMD ["npm", "run", "server"]
-```
+The easiest way to deploy is using Docker:
 
-Build and run:
 ```bash
-docker build -t cygnus-dashboard .
-docker run -p 3000:3000 -p 3001:3001 cygnus-dashboard
+docker-compose up -d
 ```
 
-### Production Server
+### Manual Deployment
 
-Use a process manager like PM2:
-```bash
-npm install -g pm2
-pm2 start server/index.js --name cygnus-dashboard
-pm2 startup
-pm2 save
-```
+1. Build the frontend:
+   ```bash
+   npm run build
+   ```
+
+2. Start the backend:
+   ```bash
+   npm run server
+   ```
+
+3. Serve the built frontend using a static file server or reverse proxy (nginx, Apache, etc.)
+
+### Environment Setup
+
+For production deployment:
+
+1. Set `NODE_ENV=production`
+2. Configure proper CORS settings
+3. Use HTTPS for wallet connections
+4. Set up proper logging and monitoring
+
+## Wallet Support
+
+### Freighter
+
+Browser extension wallet for Stellar. Install from:
+https://www.freighter.app/
+
+### Albedo
+
+Web-based Stellar wallet. No installation required.
+https://albedo.link/
 
 ## Troubleshooting
 
-### WebSocket Connection Failed
+### Wallet Not Detected
 
-- Check that the backend server is running on port 3001
-- Verify firewall settings allow WebSocket connections
-- Check browser console for connection errors
+- Ensure Freighter extension is installed and enabled
+- Check browser console for errors
+- Try refreshing the page
 
-### API Requests Failing
+### Connection Issues
 
-- Ensure backend server is running
-- Check CORS configuration in `server/index.js`
-- Verify API endpoint URLs in frontend code
+- Verify backend server is running on port 3001
+- Check CORS configuration
+- Ensure Stellar network is accessible
 
-### Build Commands Not Working
+### Build Errors
 
-- Ensure you're running the dashboard from the project root
-- Check that `make` commands are available
-- Verify paths in `server/index.js` deployment commands
+- Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+- Clear build cache: `rm -rf dist`
+- Check Node.js version (requires v20+)
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests
+5. Submit a pull request
 
 ## License
 
-MIT
-
-## Support
-
-For issues and questions, refer to the main Project Cygnus documentation.
+MIT License - see LICENSE file for details

@@ -6,7 +6,7 @@
  */
 
 import * as StellarSdk from '@stellar/stellar-sdk';
-import { Transaction, SignedTransaction, TxResult, TxParams } from '../../agents/runtime/types.js';
+import { Transaction, SignedTransaction, TxResult, TxParams } from '../types/index.js';
 import { encodeTransaction, decodeTransactionFromXDR } from './xdr/index.js';
 
 /**
@@ -111,7 +111,7 @@ export class StellarClient {
     const stellarTx = txBuilder.build();
 
     // Convert to our internal format
-    const xdr = stellarTx.toXDR('base64');
+    const xdr = stellarTx.toXDR();
     return decodeTransactionFromXDR(xdr);
   }
 
@@ -131,10 +131,10 @@ export class StellarClient {
     // Sign transaction
     stellarTx.sign(keypair);
 
-    // Get signature
-    const envelope = stellarTx.toEnvelope();
-    const signatures = envelope.signatures();
-    const signature = signatures.length > 0 ? signatures[0].signature().toString('base64') : '';
+    // Get signature - access signatures array directly
+    const signature = stellarTx.signatures.length > 0 
+      ? stellarTx.signatures[0].signature().toString('base64') 
+      : '';
 
     // Get hash
     const hash = stellarTx.hash().toString('hex');
@@ -163,7 +163,7 @@ export class StellarClient {
       return {
         success: response.successful,
         hash: response.hash,
-        ledger: response.ledger,
+        ledger: typeof response.ledger === 'string' ? parseInt(response.ledger) : response.ledger,
       };
     } catch (error: any) {
       return {
@@ -184,7 +184,7 @@ export class StellarClient {
       return {
         success: response.successful,
         hash: response.hash,
-        ledger: response.ledger,
+        ledger: typeof response.ledger === 'string' ? parseInt(response.ledger) : response.ledger,
       };
     } catch (error: any) {
       return {

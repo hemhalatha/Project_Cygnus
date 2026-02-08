@@ -184,7 +184,7 @@ export class PrometheusExporter {
    * Create HTTP handler for metrics endpoint
    */
   createHandler() {
-    return (req: any, res: any) => {
+    return (_req: any, res: any) => {
       res.setHeader('Content-Type', 'text/plain; version=0.0.4');
       res.send(this.export());
     };

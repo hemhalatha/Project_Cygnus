@@ -37,7 +37,7 @@ export async function initialize(config?: {
 
   // Initialize error logging
   const { ErrorLogger } = await import('./utils');
-  const errorLogger = new ErrorLogger({
+  const _errorLogger = new ErrorLogger({
     logDirectory: './logs',
     enableConsole: true,
     enableFile: true,
@@ -45,7 +45,7 @@ export async function initialize(config?: {
 
   // Initialize metrics collection
   const { MetricsCollector } = await import('./monitoring');
-  const metrics = new MetricsCollector();
+  const _metrics = new MetricsCollector();
 
   console.log(`${NAME} initialized successfully`);
 }

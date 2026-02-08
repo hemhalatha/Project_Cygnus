@@ -15,7 +15,6 @@ import {
   Asset,
   AssetType,
   DecoratedSignature,
-  TimeBounds,
   PaymentOp,
 } from './types.js';
 
@@ -94,6 +93,35 @@ export function decodeTransactionFromXDR(xdrString: string): Transaction {
   try {
     const tx = StellarSdk.TransactionBuilder.fromXDR(xdrString, StellarSdk.Networks.TESTNET);
 
+    // Check if it's a FeeBumpTransaction and handle accordingly
+    if ('innerTransaction' in tx) {
+      // It's a FeeBumpTransaction, extract the inner transaction
+      const innerTx = (tx as any).innerTransaction;
+      return {
+        sourceAccount: innerTx.source,
+        fee: parseInt(innerTx.fee),
+        seqNum: innerTx.sequence,
+        timeBounds: innerTx.timeBounds
+          ? {
+              minTime: innerTx.timeBounds.minTime,
+              maxTime: innerTx.timeBounds.maxTime,
+            }
+          : undefined,
+        memo: {
+          type: getMemoType(innerTx.memo),
+          value: innerTx.memo.value,
+        },
+        operations: innerTx.operations.map((op: any) => ({
+          sourceAccount: op.source,
+          body: {
+            type: getOperationType(op.type),
+            data: op,
+          },
+        })),
+      };
+    }
+
+    // Regular transaction
     return {
       sourceAccount: tx.source,
       fee: parseInt(tx.fee),
@@ -192,7 +220,7 @@ function decodeOperationBody(xdrBody: any): OperationBody {
     // Add more operation types as needed
     default:
       return {
-        type: -1,
+        type: 0, // Default to CREATE_ACCOUNT for unknown types
         data: {},
       };
   }

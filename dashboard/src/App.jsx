@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from './components/Header';
+import { Header } from './components/Header';
 import StatusCards from './components/StatusCards';
 import MetricsChart from './components/MetricsChart';
 import DeploymentPanel from './components/DeploymentPanel';
@@ -39,6 +39,7 @@ function App() {
   const [walletState, setWalletState] = useState(walletService.getState());
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'agents', 'loans'
   const [selectedAgent, setSelectedAgent] = useState(null);
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   useEffect(() => {
     // Restore wallet connection on app load
@@ -217,15 +218,26 @@ function App() {
 
   return (
     <div className="app">
-      <Header isConnected={isConnected} />
+      <Header 
+        walletState={walletState}
+        onConnectWallet={() => setShowWalletModal(true)}
+        onDisconnectWallet={handleWalletDisconnect}
+      />
       
-      <div className="wallet-section">
-        <WalletConnector
-          walletService={walletService}
-          onConnect={handleWalletConnect}
-          onDisconnect={handleWalletDisconnect}
-        />
-      </div>
+      {showWalletModal && (
+        <div className="modal-overlay" onClick={() => setShowWalletModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <WalletConnector
+              walletService={walletService}
+              onConnect={(connection) => {
+                handleWalletConnect(connection);
+                setShowWalletModal(false);
+              }}
+              onDisconnect={handleWalletDisconnect}
+            />
+          </div>
+        </div>
+      )}
       
       <nav className="main-nav">
         <button 

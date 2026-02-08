@@ -1,0 +1,27 @@
+[Unit]
+Description=Project Cygnus Dashboard Backend
+Documentation=https://github.com/your-org/project-cygnus
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/cygnus/dashboard
+Environment="NODE_ENV=production"
+Environment="PORT=3001"
+ExecStart=/usr/bin/node server/index.js
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cygnus-dashboard
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/cygnus
+
+[Install]
+WantedBy=multi-user.target

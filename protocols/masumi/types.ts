@@ -1,41 +1,60 @@
 /**
- * Masumi Identity and Trust Layer Types
+ * Masumi Protocol Type Definitions
  * 
- * W3C DID/VC standards implementation for agent identity.
+ * Types for the Masumi decentralized identity and verifiable credentials protocol.
  */
 
 /**
- * Decentralized Identifier (DID)
+ * Verifiable Credential following W3C standard
  */
-export type DID = string; // Format: did:method:identifier
-
-/**
- * DID Document following W3C standards
- */
-export interface DIDDocument {
+export interface VerifiableCredential {
   '@context': string[];
-  id: DID;
-  controller?: DID[];
-  verificationMethod: VerificationMethod[];
-  authentication: string[];
-  assertionMethod?: string[];
-  keyAgreement?: string[];
-  capabilityInvocation?: string[];
-  capabilityDelegation?: string[];
-  service: ServiceEndpoint[];
-  created?: string;
-  updated?: string;
+  type: string[];
+  issuer: string;
+  issuanceDate: string;
+  expirationDate?: string;
+  credentialSubject: any;
+  proof: CredentialProof;
 }
 
 /**
- * Verification method for DID
+ * Cryptographic proof for verifiable credential
  */
-export interface VerificationMethod {
+export interface CredentialProof {
+  type: string;
+  created: string;
+  verificationMethod: string;
+  proofPurpose: string;
+  proofValue: string;
+}
+
+/**
+ * DID Document (Decentralized Identifier Document)
+ */
+export interface DIDDocument {
+  id: string;
+  publicKey: PublicKeyEntry[];
+  authentication: (string | AuthenticationEntry)[];
+  service?: ServiceEndpoint[];
+}
+
+/**
+ * Public key entry in DID document
+ */
+export interface PublicKeyEntry {
   id: string;
   type: string;
-  controller: DID;
-  publicKeyMultibase?: string;
-  publicKeyJwk?: JsonWebKey;
+  controller: string;
+  publicKeyBase58?: string;
+  publicKeyHex?: string;
+}
+
+/**
+ * Authentication entry in DID document
+ */
+export interface AuthenticationEntry {
+  type: string;
+  publicKey: string;
 }
 
 /**
@@ -45,148 +64,14 @@ export interface ServiceEndpoint {
   id: string;
   type: string;
   serviceEndpoint: string;
-  description?: string;
 }
 
 /**
- * Verifiable Credential following W3C standards
- */
-export interface VerifiableCredential {
-  '@context': string[];
-  id: string;
-  type: string[];
-  issuer: DID;
-  issuanceDate: string;
-  expirationDate?: string;
-  credentialSubject: CredentialSubject;
-  proof: CryptographicProof;
-}
-
-/**
- * Credential subject (claims about the subject)
- */
-export interface CredentialSubject {
-  id: DID;
-  [key: string]: any;
-}
-
-/**
- * Cryptographic proof for credentials
- */
-export interface CryptographicProof {
-  type: string;
-  created: string;
-  verificationMethod: string;
-  proofPurpose: string;
-  proofValue: string;
-}
-
-/**
- * Verifiable Presentation
+ * Verifiable presentation containing credentials
  */
 export interface VerifiablePresentation {
   '@context': string[];
   type: string[];
-  holder: DID;
   verifiableCredential: VerifiableCredential[];
-  proof: CryptographicProof;
-}
-
-/**
- * Verification result
- */
-export interface VerificationResult {
-  verified: boolean;
-  issuerTrusted: boolean;
-  notExpired: boolean;
-  signatureValid: boolean;
-  error?: string;
-}
-
-/**
- * Agent metadata for registry
- */
-export interface AgentMetadata {
-  name: string;
-  description: string;
-  capabilities: string[];
-  endpoints: {
-    x402?: string;
-    sokosumi?: string;
-    [key: string]: string | undefined;
-  };
-  reputation: {
-    score: number;
-    reviews: number;
-    successRate: number;
-  };
-  createdAt: number;
-  updatedAt: number;
-}
-
-/**
- * Agent registry entry
- */
-export interface AgentRegistryEntry {
-  did: DID;
-  metadata: AgentMetadata;
-  nftTokenId: string;
-  contractAddress: string;
-  owner: string;
-}
-
-/**
- * DID update operation
- */
-export interface DIDUpdate {
-  addVerificationMethod?: VerificationMethod[];
-  removeVerificationMethod?: string[];
-  addService?: ServiceEndpoint[];
-  removeService?: string[];
-  controller?: DID[];
-}
-
-/**
- * Credential issuance request
- */
-export interface CredentialIssuanceRequest {
-  subject: DID;
-  claims: Record<string, any>;
-  expirationDate?: string;
-  credentialType?: string[];
-}
-
-/**
- * Presentation challenge
- */
-export interface PresentationChallenge {
-  challenge: string;
-  domain?: string;
-  expiresAt: number;
-}
-
-/**
- * Masumi configuration
- */
-export interface MasumiConfig {
-  didMethod: string; // e.g., "stellar", "key"
-  registryContractId?: string;
-  trustedIssuers: DID[];
-  stellarNetwork: 'testnet' | 'mainnet';
-}
-
-/**
- * DID resolution result
- */
-export interface DIDResolutionResult {
-  didDocument: DIDDocument | null;
-  didDocumentMetadata: {
-    created?: string;
-    updated?: string;
-    deactivated?: boolean;
-  };
-  didResolutionMetadata: {
-    contentType?: string;
-    error?: string;
-  };
+  proof: CredentialProof;
 }
